@@ -1,0 +1,69 @@
+{
+  "id" : "daily_billing_metric",
+  "metainfo" : {
+    "description" : "",
+    "pipelineId" : "L2_gold_daily_billing_report"
+  },
+  "definition" : {
+    "template" : [ {
+      "key" : "SxXvVNgVEkQXI1wxSK4pp",
+      "id" : "Date1",
+      "type" : "Date",
+      "properties" : {
+        "configField" : "executionDate",
+        "label" : "finance",
+        "format" : "MMMM d, yyyy",
+        "firstDay" : "Sunday",
+        "defaultValue" : "2024-12-31"
+      },
+      "errors" : { }
+    }, {
+      "key" : "TIVhrgpbgU11hXYIGwsYL",
+      "id" : "DataPreview1",
+      "type" : "DataPreview",
+      "properties" : {
+        "tableId" : "kNP9LwyUPVCjoBrkhh15h",
+        "columns" : [ {
+          "key" : "day",
+          "column" : "day",
+          "label" : "day",
+          "selected" : true
+        }, {
+          "key" : "provider",
+          "column" : "provider",
+          "label" : "provider",
+          "selected" : true
+        }, {
+          "key" : "numPatients",
+          "column" : "numPatients",
+          "label" : "numPatients",
+          "selected" : true
+        }, {
+          "key" : "billings",
+          "column" : "billings",
+          "label" : "billings",
+          "selected" : true
+        } ],
+        "title" : "Daily Billings"
+      },
+      "errors" : { }
+    } ]
+  },
+  "instances" : {
+    "test" : {
+      "config" : {
+        "executionDate" : "2024-10-02"
+      },
+      "sources" : { },
+      "schedule" : {
+        "cron" : "* 0 2 * * * *",
+        "timeZone" : "GMT",
+        "emailOnSuccess" : false,
+        "emailOnFailure" : false,
+        "emailOnStart" : false,
+        "emails" : [ "email@gmail.com" ],
+        "enabled" : false
+      }
+    }
+  }
+}

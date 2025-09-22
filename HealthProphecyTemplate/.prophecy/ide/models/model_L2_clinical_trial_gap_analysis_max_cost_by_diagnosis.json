@@ -1,0 +1,355 @@
+{
+  "id" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis",
+  "metainfo" : {
+    "label" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "alias" : "\"prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis\"",
+        "materialized" : "table",
+        "database" : "\"product_dev\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_by_reason_code" : {
+      "id" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_by_reason_code",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "total_cost_by_reason_code",
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_by_reason_code",
+          "sourceType" : "Source",
+          "sourceName" : "prophecy_tmp_source__L2_clinical_trial_gap_analysis",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "output_port_0_1",
+          "slug" : "output_port_0_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY" : {
+      "id" : "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY",
+      "component" : "DataCleansing",
+      "metadata" : {
+        "label" : "clean_null_diagnosis",
+        "x" : -300,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "trimWhiteSpace" : false,
+        "replaceNullForNumericFields" : false,
+        "cleanLetters" : false,
+        "replaceNullTextWith" : "No Diagnosis",
+        "removeRowNullAllCols" : false,
+        "replaceNullTextFields" : true,
+        "relation_name" : [ "total_cost_by_reason_code" ],
+        "columnNames" : [ "snomed_diagnosis" ],
+        "_oldMacroProperties" : {
+          "macroName" : "DataCleansing",
+          "projectName" : "DatabricksSqlBasics",
+          "parameters" : [ {
+            "name" : "relation_name",
+            "value" : "['total_cost_by_reason_code']"
+          }, {
+            "name" : "schema",
+            "value" : "[{\"name\": \"snomed_diagnosis\", \"dataType\": \"String\"}, {\"name\": \"total_cost\", \"dataType\": \"Double\"}]"
+          }, {
+            "name" : "modifyCase",
+            "value" : "Keep original"
+          }, {
+            "name" : "columnNames",
+            "value" : "[\"snomed_diagnosis\"]"
+          }, {
+            "name" : "replaceNullTextFields",
+            "value" : "true"
+          }, {
+            "name" : "replaceNullTextWith",
+            "value" : "No Diagnosis"
+          }, {
+            "name" : "replaceNullForNumericFields",
+            "value" : "false"
+          }, {
+            "name" : "replaceNullNumericWith",
+            "value" : "0"
+          }, {
+            "name" : "trimWhiteSpace",
+            "value" : "false"
+          }, {
+            "name" : "removeTabsLineBreaksAndDuplicateWhitespace",
+            "value" : "false"
+          }, {
+            "name" : "allWhiteSpace",
+            "value" : "false"
+          }, {
+            "name" : "cleanLetters",
+            "value" : "false"
+          }, {
+            "name" : "cleanPunctuations",
+            "value" : "false"
+          }, {
+            "name" : "cleanNumbers",
+            "value" : "false"
+          }, {
+            "name" : "removeRowNullAllCols",
+            "value" : "false"
+          } ]
+        },
+        "schema" : "[{\"name\": \"snomed_diagnosis\", \"dataType\": \"String\"}, {\"name\": \"total_cost\", \"dataType\": \"Double\"}]",
+        "allWhiteSpace" : false,
+        "removeTabsLineBreaksAndDuplicateWhitespace" : false,
+        "modifyCase" : "Keep original",
+        "cleanPunctuations" : false,
+        "cleanNumbers" : false,
+        "replaceNullNumericWith" : 0
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "pRMzlGBH1LBb7muElWr1R$$KOPYLXCfdq2tdu6QDX8SN",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "SjDiCNFkw2xFSJvehyRbZ$$Fa-ySZcfNb10M44yCLuO8",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "GGtv2xtHTzHLiT1RaAhxN" : {
+      "id" : "GGtv2xtHTzHLiT1RaAhxN",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L0_bronze_clinical_study_details",
+        "x" : -300,
+        "y" : 200,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "l0_bronze_clinical_study_details",
+          "sourceType" : "Table",
+          "sourceName" : "playground.playground_schema_11083_gd4",
+          "alias" : "",
+          "additionalProperties" : null
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "wrtCzfB2cljMM_76LidDC",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy" : {
+      "id" : "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "diagnosis_clinical_trials",
+        "x" : 100,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "in1",
+          "expression" : {
+            "expression" : "in1.snomedCode = in0.snomed_diagnosis"
+          },
+          "joinType" : "left"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "in0.snomed_diagnosis"
+          },
+          "alias" : "snomed_diagnosis",
+          "_row_id" : "996371617"
+        }, {
+          "expression" : {
+            "expression" : "in0.total_cost"
+          },
+          "alias" : "total_cost",
+          "_row_id" : "927249071"
+        }, {
+          "expression" : {
+            "expression" : "in1.nctId"
+          },
+          "alias" : "nctId",
+          "_row_id" : "1632976097"
+        }, {
+          "expression" : {
+            "expression" : "in1.briefTitle"
+          },
+          "alias" : "briefTitle",
+          "_row_id" : "1833063420"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3##snomedCode", "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9##snomed_diagnosis", "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9##snomed_diagnosis", "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9##total_cost", "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3##nctId", "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3##briefTitle" ],
+        "headAlias" : "in0"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9",
+          "slug" : "in0"
+        }, {
+          "id" : "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3",
+          "slug" : "in1"
+        } ],
+        "outputs" : [ {
+          "id" : "9D3Qe7gdPRpeAquTusxfn$$3Y5sSPoDY-UmVhG6HAkye",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis" : {
+      "id" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "max_cost_by_diagnosis",
+        "phase" : 0
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM max_cost_by_diagnosis\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_1_1",
+          "slug" : "input_port_1_1"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_1_1",
+          "slug" : "output_port_1_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q" : {
+      "id" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "max_cost_by_diagnosis",
+        "x" : 380,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "snomed_diagnosis"
+          },
+          "alias" : "snomed_diagnosis",
+          "_row_id" : "1076060054"
+        }, {
+          "expression" : {
+            "expression" : "total_cost"
+          },
+          "alias" : "total_cost",
+          "_row_id" : "xUNraF_RFS"
+        }, {
+          "expression" : {
+            "expression" : "COLLECT_SET(nctId)"
+          },
+          "alias" : "nctIds",
+          "_row_id" : "KH_KboAkCq"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI##snomed_diagnosis", "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI##total_cost", "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI##nctId" ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "snomed_diagnosis"
+          },
+          "alias" : "",
+          "_row_id" : "fR-c6DV4uh"
+        }, {
+          "expression" : {
+            "expression" : "total_cost"
+          },
+          "alias" : "",
+          "_row_id" : "ZE17pS0T5S"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "M6vGLCTWmtn4Wx9ndL8FG$$TkixeaaC0OXRzo8z84HbZ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q_prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis",
+    "source" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "sourcePort" : "M6vGLCTWmtn4Wx9ndL8FG$$TkixeaaC0OXRzo8z84HbZ",
+    "target" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis",
+    "targetPort" : "input_port_1_1"
+  }, {
+    "id" : "2bQv-H8ObFNaMYvIahWqv",
+    "source" : "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy",
+    "sourcePort" : "9D3Qe7gdPRpeAquTusxfn$$3Y5sSPoDY-UmVhG6HAkye",
+    "target" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "targetPort" : "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI"
+  }, {
+    "id" : "NMxjvDY3XDTk8LxS3sm_7",
+    "source" : "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY",
+    "sourcePort" : "SjDiCNFkw2xFSJvehyRbZ$$Fa-ySZcfNb10M44yCLuO8",
+    "target" : "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy",
+    "targetPort" : "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9"
+  }, {
+    "id" : "JX3qvmXkQv40MlhY4ixIO",
+    "source" : "GGtv2xtHTzHLiT1RaAhxN",
+    "sourcePort" : "wrtCzfB2cljMM_76LidDC",
+    "target" : "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy",
+    "targetPort" : "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3"
+  }, {
+    "id" : "wU57iqkFLifxvBnVoI64H",
+    "source" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_by_reason_code",
+    "sourcePort" : "output_port_0_1",
+    "target" : "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY",
+    "targetPort" : "pRMzlGBH1LBb7muElWr1R$$KOPYLXCfdq2tdu6QDX8SN"
+  } ],
+  "component" : "Model"
+}

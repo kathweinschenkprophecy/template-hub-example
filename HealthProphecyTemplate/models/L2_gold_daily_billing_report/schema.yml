@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "model_L2_gold_daily_billing_report_patient_billings_by_provider"
+  tags:
+  - "prophecy_temp"

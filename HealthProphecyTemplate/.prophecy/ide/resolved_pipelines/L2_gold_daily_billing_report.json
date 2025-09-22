@@ -1,0 +1,178 @@
+{
+  "id" : "L2_gold_daily_billing_report",
+  "metainfo" : {
+    "label" : "L2_gold_daily_billing_report",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ {
+          "name" : "executionDate",
+          "kind" : {
+            "type" : "date",
+            "value" : "'2025-01-01'"
+          }
+        } ]
+      }
+    },
+    "schedule" : {
+      "cron" : "* 0 2 * * * *",
+      "timeZone" : "GMT",
+      "emailOnSuccess" : false,
+      "emailOnFailure" : false,
+      "emailOnStart" : false,
+      "emails" : [ "email@gmail.com" ],
+      "enabled" : false
+    }
+  },
+  "processes" : {
+    "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC" : {
+      "id" : "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L0_raw_encounters",
+        "x" : -820,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_encounters",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "uo4Hb2lymtSZI7VHtANHl$$ghcAAgtqTi4zf5ag-WtTk",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "FBabWUYBFHVel2gZN8dZx$$s6Rpoafd7UtkCflItz-2h",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "start",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "stop",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "organization",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "payer",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "encounterClass",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "totalClaimCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "payerCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "reasonCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "reasonDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "kNP9LwyUPVCjoBrkhh15h" : {
+      "id" : "kNP9LwyUPVCjoBrkhh15h",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "model_L2_gold_daily_billing_report_patient_billings_by_provider",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "model_L2_gold_daily_billing_report_patient_billings_by_provider"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "kNP9LwyUPVCjoBrkhh15h", "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt", "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83", "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH", "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC" ],
+        "type" : "table",
+        "isTemporaryTable" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "model_L2_gold_daily_billing_report_patient_billings_by_provider_in_0",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "model_L2_gold_daily_billing_report_patient_billings_by_provider_out_0",
+          "slug" : "out_0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "4UvGCiOEllHigHFPAQ5RN",
+    "source" : "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC",
+    "sourcePort" : "FBabWUYBFHVel2gZN8dZx$$s6Rpoafd7UtkCflItz-2h",
+    "target" : "kNP9LwyUPVCjoBrkhh15h",
+    "targetPort" : "model_L2_gold_daily_billing_report_patient_billings_by_provider_in_0"
+  } ],
+  "component" : "Pipeline"
+}

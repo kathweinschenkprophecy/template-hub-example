@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "model_L0_raw_clinical_trials_cleanse_clinical_trial_data"
+  tags:
+  - "prophecy_temp"

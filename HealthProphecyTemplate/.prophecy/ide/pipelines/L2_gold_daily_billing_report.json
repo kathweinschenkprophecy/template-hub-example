@@ -1,0 +1,676 @@
+{
+  "id" : "L2_gold_daily_billing_report",
+  "metainfo" : {
+    "label" : "L2_gold_daily_billing_report",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ {
+          "name" : "executionDate",
+          "kind" : {
+            "type" : "date",
+            "value" : "'2025-01-01'"
+          }
+        } ]
+      }
+    },
+    "schedule" : {
+      "cron" : "* 0 2 * * * *",
+      "timeZone" : "GMT",
+      "emailOnSuccess" : false,
+      "emailOnFailure" : false,
+      "emailOnStart" : false,
+      "emails" : [ "email@gmail.com" ],
+      "enabled" : false
+    }
+  },
+  "processes" : {
+    "kNP9LwyUPVCjoBrkhh15h" : {
+      "id" : "kNP9LwyUPVCjoBrkhh15h",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L2_gold_billing_daily_report",
+        "x" : 120,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "L2_gold_billing_daily_report",
+          "sourceType" : "Table",
+          "sourceName" : "playground.playground_schema_11083_gd4",
+          "alias" : "",
+          "additionalProperties" : null
+        },
+        "writeOptions" : {
+          "writeMode" : "append"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "qN3-byc__8y7yuskqTGpW",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "day",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "numPatients",
+              "dataType" : {
+                "type" : "Bigint"
+              }
+            }, {
+              "name" : "billings",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "I1pPb_LCho8QpGijenmMi",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "day",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "numPatients",
+              "dataType" : {
+                "type" : "Bigint"
+              }
+            }, {
+              "name" : "billings",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC" : {
+      "id" : "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L0_raw_encounters",
+        "x" : -820,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_encounters",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "uo4Hb2lymtSZI7VHtANHl$$ghcAAgtqTi4zf5ag-WtTk",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "FBabWUYBFHVel2gZN8dZx$$s6Rpoafd7UtkCflItz-2h",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "start",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "stop",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "organization",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "payer",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "encounterClass",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "totalClaimCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "payerCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "reasonCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "reasonDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "WnGGDW2diOWZGlgihNb-l$$IADTQMNZxY96RvEmNL1yr" : {
+      "id" : "WnGGDW2diOWZGlgihNb-l$$IADTQMNZxY96RvEmNL1yr",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_1",
+        "x" : -860,
+        "y" : -580,
+        "height" : 136.0000457763672,
+        "width" : 240,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "# Provider Billing Report"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "Q87bWrPegpejf5MvLptPU$$WowbX-PrpiPg9v3rBnlnK" : {
+      "id" : "Q87bWrPegpejf5MvLptPU$$WowbX-PrpiPg9v3rBnlnK",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2",
+        "x" : -680,
+        "y" : -220,
+        "height" : 60,
+        "width" : 220.0000457763672,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "1. Convert Timestamp to Date"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83" : {
+      "id" : "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "encounter_by_date",
+        "x" : -360,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "9hUiIPXtyoy6CdsnP5Com$$rPQjJ39CO5ldBexNuR8g2##encounterDate" ],
+        "condition" : {
+          "expression" : "encounterDate  = {{ var('executionDate') }}"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "9hUiIPXtyoy6CdsnP5Com$$rPQjJ39CO5ldBexNuR8g2",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "encounterDate",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "2xbXvAbCKQf-wQu2CSLYx$$FuWkb5y9qD-HFX_y9zMlD",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "encounterDate",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "pkBK-IWHyuweTgyzsuTEX$$PUUVODPd-gQr929TzM9K9" : {
+      "id" : "pkBK-IWHyuweTgyzsuTEX$$PUUVODPd-gQr929TzM9K9",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_3",
+        "x" : -180,
+        "y" : -220,
+        "height" : 80.0000228881836,
+        "width" : 219.99990844726562,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "3. Aggregate numPatients and billings per provider and day"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt" : {
+      "id" : "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "patient_billings_by_provider",
+        "x" : -120,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "encounterDate"
+          },
+          "alias" : "day",
+          "_row_id" : "488006289"
+        }, {
+          "expression" : {
+            "expression" : "provider"
+          },
+          "alias" : "provider",
+          "_row_id" : "1800988385"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(patient)"
+          },
+          "alias" : "numPatients",
+          "_row_id" : "1178364171"
+        }, {
+          "expression" : {
+            "expression" : "SUM(baseEncounterCost)"
+          },
+          "alias" : "billings",
+          "_row_id" : "PAFZuNanxb"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "encounterDate"
+          },
+          "alias" : "",
+          "_row_id" : "GP74y-7VUp"
+        }, {
+          "expression" : {
+            "expression" : "provider"
+          },
+          "alias" : "",
+          "_row_id" : "3S3WbfSCjm"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "13mNBHzS-P7LFoDwsv1en$$_gZkd3swy3rVrY8lEo2a1",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "encounterDate",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "-A9mBjX6_NeThEVeTr5_q$$4zti4O2gOqAjYHSRu-fGK",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "day",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "numPatients",
+              "dataType" : {
+                "type" : "Bigint"
+              }
+            }, {
+              "name" : "billings",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "-AumXApa1B5zT1ZVzuTVl$$0ByI-NUQojTxGfDElTtCe" : {
+      "id" : "-AumXApa1B5zT1ZVzuTVl$$0ByI-NUQojTxGfDElTtCe",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2_1",
+        "x" : -400,
+        "y" : -220,
+        "height" : 92.0000228881836,
+        "width" : 219.99990844726562,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "2. Filter for Variable executionDate"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH" : {
+      "id" : "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "encounter_details",
+        "x" : -620,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p##patient", "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p##provider", "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p##baseEncounterCost" ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "date(start)"
+          },
+          "alias" : "encounterDate",
+          "_row_id" : "1901546614"
+        }, {
+          "expression" : {
+            "expression" : "patient"
+          },
+          "alias" : "patient",
+          "_row_id" : "1612310192"
+        }, {
+          "expression" : {
+            "expression" : "provider"
+          },
+          "alias" : "provider",
+          "_row_id" : "540629221"
+        }, {
+          "expression" : {
+            "expression" : "baseEncounterCost"
+          },
+          "alias" : "baseEncounterCost",
+          "_row_id" : "1992861733"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "start",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "stop",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "organization",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "payer",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "encounterClass",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "totalClaimCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "payerCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "reasonCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "reasonDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "oMibWOubmeBgYunGzy7qt$$VdP8DKDn8a-5tCPz_ali7",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "encounterDate",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "XaRNs_4LFsZBFkxfYetrR",
+    "source" : "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH",
+    "sourcePort" : "oMibWOubmeBgYunGzy7qt$$VdP8DKDn8a-5tCPz_ali7",
+    "target" : "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83",
+    "targetPort" : "9hUiIPXtyoy6CdsnP5Com$$rPQjJ39CO5ldBexNuR8g2"
+  }, {
+    "id" : "jTJj3hQE0iC8a1TTwXT3U",
+    "source" : "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83",
+    "sourcePort" : "2xbXvAbCKQf-wQu2CSLYx$$FuWkb5y9qD-HFX_y9zMlD",
+    "target" : "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt",
+    "targetPort" : "13mNBHzS-P7LFoDwsv1en$$_gZkd3swy3rVrY8lEo2a1"
+  }, {
+    "id" : "4UvGCiOEllHigHFPAQ5RN",
+    "source" : "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC",
+    "sourcePort" : "FBabWUYBFHVel2gZN8dZx$$s6Rpoafd7UtkCflItz-2h",
+    "target" : "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH",
+    "targetPort" : "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p"
+  }, {
+    "id" : "FkEe075TRPc5chTCGpZOt$$WS-2yScX8V_mKDULvijzL",
+    "source" : "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt",
+    "sourcePort" : "-A9mBjX6_NeThEVeTr5_q$$4zti4O2gOqAjYHSRu-fGK",
+    "target" : "kNP9LwyUPVCjoBrkhh15h",
+    "targetPort" : "qN3-byc__8y7yuskqTGpW"
+  } ],
+  "component" : "Pipeline"
+}

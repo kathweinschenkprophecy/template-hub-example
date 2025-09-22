@@ -1,0 +1,257 @@
+{
+  "id" : "model_L2_gold_daily_billing_report_patient_billings_by_provider",
+  "metainfo" : {
+    "label" : "model_L2_gold_daily_billing_report_patient_billings_by_provider",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "alias" : "\"L2_gold_billing_daily_report\"",
+        "materialized" : "incremental",
+        "database" : "\"playground\"",
+        "schema" : "\"playground_schema_11083_gd4\"",
+        "incremental_strategy" : "\"append\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "kNP9LwyUPVCjoBrkhh15h" : {
+      "id" : "kNP9LwyUPVCjoBrkhh15h",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "L2_gold_billing_daily_report",
+        "phase" : 0
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM patient_billings_by_provider\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "qN3-byc__8y7yuskqTGpW",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "I1pPb_LCho8QpGijenmMi",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC" : {
+      "id" : "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L0_raw_encounters",
+        "x" : -820,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_encounters",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "FBabWUYBFHVel2gZN8dZx$$s6Rpoafd7UtkCflItz-2h",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83" : {
+      "id" : "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "encounter_by_date",
+        "x" : -360,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "9hUiIPXtyoy6CdsnP5Com$$rPQjJ39CO5ldBexNuR8g2##encounterDate" ],
+        "condition" : {
+          "expression" : "encounterDate  = {{ var('executionDate') }}"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "9hUiIPXtyoy6CdsnP5Com$$rPQjJ39CO5ldBexNuR8g2",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "2xbXvAbCKQf-wQu2CSLYx$$FuWkb5y9qD-HFX_y9zMlD",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt" : {
+      "id" : "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "patient_billings_by_provider",
+        "x" : -120,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "encounterDate"
+          },
+          "alias" : "day",
+          "_row_id" : "488006289"
+        }, {
+          "expression" : {
+            "expression" : "provider"
+          },
+          "alias" : "provider",
+          "_row_id" : "1800988385"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(patient)"
+          },
+          "alias" : "numPatients",
+          "_row_id" : "1178364171"
+        }, {
+          "expression" : {
+            "expression" : "SUM(baseEncounterCost)"
+          },
+          "alias" : "billings",
+          "_row_id" : "PAFZuNanxb"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "encounterDate"
+          },
+          "alias" : "",
+          "_row_id" : "GP74y-7VUp"
+        }, {
+          "expression" : {
+            "expression" : "provider"
+          },
+          "alias" : "",
+          "_row_id" : "3S3WbfSCjm"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "13mNBHzS-P7LFoDwsv1en$$_gZkd3swy3rVrY8lEo2a1",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "-A9mBjX6_NeThEVeTr5_q$$4zti4O2gOqAjYHSRu-fGK",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH" : {
+      "id" : "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "encounter_details",
+        "x" : -620,
+        "y" : -340,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p##patient", "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p##provider", "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p##baseEncounterCost" ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "date(start)"
+          },
+          "alias" : "encounterDate",
+          "_row_id" : "1901546614"
+        }, {
+          "expression" : {
+            "expression" : "patient"
+          },
+          "alias" : "patient",
+          "_row_id" : "1612310192"
+        }, {
+          "expression" : {
+            "expression" : "provider"
+          },
+          "alias" : "provider",
+          "_row_id" : "540629221"
+        }, {
+          "expression" : {
+            "expression" : "baseEncounterCost"
+          },
+          "alias" : "baseEncounterCost",
+          "_row_id" : "1992861733"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "oMibWOubmeBgYunGzy7qt$$VdP8DKDn8a-5tCPz_ali7",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "FkEe075TRPc5chTCGpZOt$$WS-2yScX8V_mKDULvijzL",
+    "source" : "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt",
+    "sourcePort" : "-A9mBjX6_NeThEVeTr5_q$$4zti4O2gOqAjYHSRu-fGK",
+    "target" : "kNP9LwyUPVCjoBrkhh15h",
+    "targetPort" : "qN3-byc__8y7yuskqTGpW"
+  }, {
+    "id" : "jTJj3hQE0iC8a1TTwXT3U",
+    "source" : "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83",
+    "sourcePort" : "2xbXvAbCKQf-wQu2CSLYx$$FuWkb5y9qD-HFX_y9zMlD",
+    "target" : "xNAvR8YXeu_gzZaFclBbC$$wBRrzkDT3tMGYyKzPHGTt",
+    "targetPort" : "13mNBHzS-P7LFoDwsv1en$$_gZkd3swy3rVrY8lEo2a1"
+  }, {
+    "id" : "XaRNs_4LFsZBFkxfYetrR",
+    "source" : "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH",
+    "sourcePort" : "oMibWOubmeBgYunGzy7qt$$VdP8DKDn8a-5tCPz_ali7",
+    "target" : "_HvXVLVRON7iTNTtK_Vkp$$XdbheL5C0hP-5lKRjXK83",
+    "targetPort" : "9hUiIPXtyoy6CdsnP5Com$$rPQjJ39CO5ldBexNuR8g2"
+  }, {
+    "id" : "4UvGCiOEllHigHFPAQ5RN",
+    "source" : "kJpM0_0YDq0QjkdpCQ4by$$x5NKCKuf-HiwvpGNlrnRC",
+    "sourcePort" : "FBabWUYBFHVel2gZN8dZx$$s6Rpoafd7UtkCflItz-2h",
+    "target" : "lpfZD39FfqDSDm_vYeNSR$$XKUxNrgWlGDhC4Eq1_rSH",
+    "targetPort" : "2vKqz6_dJgX_o_aq37VpZ$$nBoo1f0M8L__R67rZhR3p"
+  } ],
+  "component" : "Model"
+}

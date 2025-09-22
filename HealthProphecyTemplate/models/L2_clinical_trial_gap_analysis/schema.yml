@@ -1,0 +1,37 @@
+---
+version: 2
+models:
+- name: "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis"
+  tags:
+  - "prophecy_temp"
+- name: "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted"
+  tags:
+  - "prophecy_temp"
+- name: "model_L2_clinical_trial_gap_analysis_null_nct_ids"
+  tags:
+  - "prophecy_temp"
+- name: "model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code"
+  tags:
+  - "prophecy_temp"
+- name: "model_L2_clinical_trial_gap_analysis_total_cost_sorted"
+  tags:
+  - "prophecy_temp"
+sources:
+- name: "prophecy_tmp_source__L2_clinical_trial_gap_analysis"
+  database: "product_dev"
+  schema: "default"
+  config:
+    enabled: true
+  tables:
+  - name: "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis"
+    tags:
+    - "prophecy_temp"
+  - name: "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis_sorted"
+    tags:
+    - "prophecy_temp"
+  - name: "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_by_reason_code"
+    tags:
+    - "prophecy_temp"
+  - name: "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_sorted"
+    tags:
+    - "prophecy_temp"

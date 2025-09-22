@@ -1,0 +1,663 @@
+---
+version: 2
+sources:
+- name: "analyst_samples.healthcare"
+  database: "analyst_samples"
+  schema: "healthcare"
+  tables:
+  - name: "L0_raw_claims"
+    description: "Raw healthcare claims data encompassing patient diagnoses, billing\
+      \ statuses, and insurance details, aiding in claims management and analysis."
+    columns:
+    - name: "id"
+      description: "Unique identifier for each claim"
+      tags: []
+      dataType:
+        type: "String"
+    - mappings:
+      - type: "foreign"
+        columnName: "id"
+        datasetId: "table/analyst_samples_prophecy_dot_healthcare/L0_raw_patients"
+        datasetName: "table/analyst_samples_prophecy_dot_healthcare/L0_raw_patients"
+      name: "patientId"
+      description: "Unique identifier for the patient associated with the claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "providerId"
+      description: "Unique identifier for the healthcare provider involved in the\
+        \ claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "primaryPatientInsuranceId"
+      description: "The ID of the primary insurance provider for the patient"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "secondaryPatientInsuranceId"
+      description: "The ID of the secondary insurance provider for the patient"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "departmentId"
+      description: "The ID of the department handling the patient's claim"
+      tags: []
+      dataType:
+        type: "Integer"
+    - name: "patientDepartmentId"
+      description: "ID of the department where the patient is treated"
+      tags: []
+      dataType:
+        type: "Integer"
+    - name: "diagnosis1"
+      description: "Primary diagnosis for the patient's claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "diagnosis2"
+      description: "Secondary diagnosis for the patient's claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "diagnosis3"
+      description: "Third diagnosis code associated with the patient's claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "diagnosis4"
+      description: "Fourth diagnosis code associated with the patient's claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "diagnosis5"
+      description: "Fifth diagnosis code associated with the patient's claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "diagnosis6"
+      description: "The sixth diagnosis code associated with the claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "diagnosis7"
+      description: "The seventh diagnosis code associated with the claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "diagnosis8"
+      description: "The eighth diagnosis code associated with the claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "referringProviderId"
+      description: "ID of the provider who referred the patient"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "appointmentId"
+      description: "Unique identifier for the patient's appointment"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "currentIllnessDate"
+      description: "Timestamp of the date when the current illness was noted"
+      tags: []
+      dataType:
+        type: "Timestamp"
+    - name: "serviceDate"
+      description: "Date when the medical service was provided"
+      tags: []
+      dataType:
+        type: "Timestamp"
+    - name: "supervisingProviderId"
+      description: "ID of the provider supervising the patient's care"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "status1"
+      description: "Primary status of the claim"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "status2"
+      description: "The second status of the claim indicating its progress"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "statusP"
+      description: "The status of the claim related to payment processing"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "outstanding1"
+      description: "The amount outstanding for the first claim"
+      tags: []
+      dataType:
+        type: "Double"
+    - name: "outstanding2"
+      description: "The outstanding amount for the second claim"
+      tags: []
+      dataType:
+        type: "Double"
+    - name: "outstandingP"
+      description: "The total outstanding amount for the primary claim"
+      tags: []
+      dataType:
+        type: "Double"
+    - name: "lastBilledDate1"
+      description: "The date when the first claim was last billed"
+      tags: []
+      dataType:
+        type: "Timestamp"
+    - name: "lastBilledDate2"
+      description: "Date when the second billing was last processed for the claim"
+      tags: []
+      dataType:
+        type: "Timestamp"
+    - name: "lastBilledDateP"
+      description: "Date when the primary billing was last processed for the claim"
+      tags: []
+      dataType:
+        type: "Timestamp"
+    - name: "healthcareClaimTypeID1"
+      description: "Identifier for the type of healthcare claim associated with the\
+        \ first claim"
+      tags: []
+      dataType:
+        type: "Double"
+    - name: "healthcareClaimTypeID2"
+      description: "Identifier for the type of healthcare claim associated with the\
+        \ second claim."
+      tags: []
+      dataType:
+        type: "Double"
+    type: "table"
+  - name: "L0_raw_encounters"
+    description: "Patient encounter data capturing costs, payer information, and encounter\
+      \ details, aiding in financial analysis and healthcare management."
+    columns:
+    - name: "id"
+      description: "Unique identifier for each encounter"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "start"
+      description: "Timestamp indicating when the encounter began"
+      tags: []
+      dataType:
+        type: "Timestamp"
+    - name: "stop"
+      description: "Timestamp indicating when the encounter ended"
+      tags: []
+      dataType:
+        type: "Timestamp"
+    - mappings:
+      - type: "foreign"
+        columnName: "id"
+        datasetId: "table/analyst_samples_prophecy_dot_healthcare/L0_raw_patients"
+        datasetName: "table/analyst_samples_prophecy_dot_healthcare/L0_raw_patients"
+      name: "patient"
+      description: "Identifier for the patient involved in the encounter"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "organization"
+      description: "The name of the organization involved in the encounter"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "provider"
+      description: "The name of the healthcare provider involved in the encounter"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "payer"
+      description: "The entity responsible for paying the healthcare costs"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "encounterClass"
+      description: "The classification of the encounter type"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "code"
+      description: "The code associated with the medical encounter"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "description"
+      description: "Detailed description of the encounter"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "baseEncounterCost"
+      description: "The initial cost associated with the encounter before any adjustments\
+        \ or claims."
+      tags: []
+      dataType:
+        type: "Double"
+    - name: "totalClaimCost"
+      description: "Total cost of the claim submitted for the encounter"
+      tags: []
+      dataType:
+        type: "Double"
+    - name: "payerCoverage"
+      description: "The amount covered by the payer for the encounter"
+      tags: []
+      dataType:
+        type: "Double"
+    - name: "reasonCode"
+      description: "Code indicating the reason for the encounter"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "reasonDescription"
+      description: "Description of the reason for the encounter"
+      tags: []
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "L0_raw_clinical_trials"
+    description: "Data on clinical trials, including details on interventions, conditions,\
+      \ and study design, supporting research and analysis in medical studies."
+    columns:
+    - name: "_corrupt_record"
+      description: "Indicates if there are any corrupt records in the dataset"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "protocolSection"
+      description: "Contains detailed information about the clinical trial protocol"
+      tags: []
+      dataType:
+        type: "Struct"
+        fields:
+        - name: "armsInterventionsModule"
+          dataType:
+            type: "Struct"
+            fields:
+            - name: "interventions"
+              dataType:
+                type: "Array"
+                dataType:
+                  type: "Struct"
+                  fields:
+                  - name: "name"
+                    dataType:
+                      type: "String"
+                    description: "The name of the intervention in the clinical trial"
+                    tags: []
+              description: "List of interventions used in the clinical trial"
+              tags: []
+          description: "Module detailing the arms and interventions of the clinical\
+            \ trial"
+          tags: []
+        - name: "conditionsModule"
+          dataType:
+            type: "Struct"
+            fields:
+            - name: "conditions"
+              dataType:
+                type: "Array"
+                dataType:
+                  type: "String"
+              description: "List of conditions associated with the clinical trial"
+              tags: []
+          description: "Conditions being studied in the clinical trial"
+          tags: []
+        - name: "designModule"
+          dataType:
+            type: "Struct"
+            fields:
+            - name: "studyType"
+              dataType:
+                type: "String"
+              description: "Type of study design for the clinical trial"
+              tags: []
+          description: "Details about the study design type of the clinical trial"
+          tags: []
+        - name: "identificationModule"
+          dataType:
+            type: "Struct"
+            fields:
+            - name: "briefTitle"
+              dataType:
+                type: "String"
+              description: "The brief title of the clinical trial"
+              tags: []
+            - name: "nctId"
+              dataType:
+                type: "String"
+              description: "The unique identifier for the clinical trial"
+              tags: []
+          description: "Identification details including the brief title and NCT ID\
+            \ of the clinical trial"
+          tags: []
+        - name: "sponsorCollaboratorsModule"
+          dataType:
+            type: "Struct"
+            fields:
+            - name: "collaborators"
+              dataType:
+                type: "Array"
+                dataType:
+                  type: "Struct"
+                  fields:
+                  - name: "name"
+                    dataType:
+                      type: "String"
+                    description: "Name of the collaborators involved in the clinical\
+                      \ trial"
+                    tags: []
+              description: "List of collaborators involved in the clinical trial"
+              tags: []
+            - name: "leadSponsor"
+              dataType:
+                type: "Struct"
+                fields:
+                - name: "name"
+                  dataType:
+                    type: "String"
+                  description: "Name of the lead sponsor for the clinical trial"
+                  tags: []
+              description: "Name of the lead sponsor for the clinical trial"
+              tags: []
+          description: "Module containing information about the sponsors and collaborators\
+            \ of the clinical trial"
+          tags: []
+        - name: "statusModule"
+          dataType:
+            type: "Struct"
+            fields:
+            - name: "overallStatus"
+              dataType:
+                type: "String"
+              description: "Overall status of the clinical trial"
+              tags: []
+          description: "Overall status of the clinical trial"
+          tags: []
+    - mappings:
+      - type: "foreign"
+        columnName: "reasonCode"
+        datasetId: "table/analyst_samples_prophecy_dot_healthcare/L0_raw_encounters"
+        datasetName: "table/analyst_samples_prophecy_dot_healthcare/L0_raw_encounters"
+      name: "snomedCode"
+      description: "The SNOMED code associated with the condition"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "conditionDescription"
+      description: "Description of the medical condition being studied in the trial"
+      tags: []
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "L0_raw_patients"
+    description: "Comprehensive patient demographic and healthcare data, enabling\
+      \ insights into healthcare coverage and expenses across various regions."
+    columns:
+    - name: "id"
+      description: "Unique identifier for each patient"
+      dataType:
+        type: "String"
+    - name: "birthDate"
+      description: "Date of birth of the patient"
+      dataType:
+        type: "Date"
+    - name: "deathDate"
+      description: "Date of death of the patient"
+      dataType:
+        type: "Date"
+    - name: "ssn"
+      description: "Social Security Number of the patient"
+      dataType:
+        type: "String"
+    - name: "drivers"
+      description: "Driver's license number of the patient"
+      dataType:
+        type: "String"
+    - name: "passport"
+      description: "Passport number of the patient"
+      dataType:
+        type: "String"
+    - name: "prefix"
+      description: "Prefix used before the patient's name"
+      dataType:
+        type: "String"
+    - name: "first"
+      description: "Patient's first name"
+      dataType:
+        type: "String"
+    - name: "middle"
+      description: "Middle name of the patient"
+      dataType:
+        type: "String"
+    - name: "last"
+      description: "Last name of the patient"
+      dataType:
+        type: "String"
+    - name: "suffix"
+      description: "Suffix indicating generational title of the patient"
+      dataType:
+        type: "String"
+    - name: "maiden"
+      description: "The maiden name of the patient"
+      dataType:
+        type: "String"
+    - name: "marital"
+      description: "Marital status of the patient"
+      dataType:
+        type: "String"
+    - name: "race"
+      description: "Race of the patient"
+      dataType:
+        type: "String"
+    - name: "ethnicity"
+      description: "Ethnic background of the patient"
+      dataType:
+        type: "String"
+    - name: "gender"
+      description: "Gender of the patient"
+      dataType:
+        type: "String"
+    - name: "birthPlace"
+      description: "Place where the patient was born"
+      dataType:
+        type: "String"
+    - name: "address"
+      description: "Residential address of the patient"
+      dataType:
+        type: "String"
+    - name: "city"
+      description: "City where the patient resides"
+      dataType:
+        type: "String"
+    - name: "state"
+      description: "State where the patient resides"
+      dataType:
+        type: "String"
+    - name: "county"
+      description: "The name of the county where the patient resides"
+      dataType:
+        type: "String"
+    - name: "fipsCountyCode"
+      description: "The Federal Information Processing Standards code for the county"
+      dataType:
+        type: "String"
+    - name: "zip"
+      description: "Postal code of the patient's residence"
+      dataType:
+        type: "String"
+    - name: "lat"
+      description: "Latitude coordinate of the patient's address"
+      dataType:
+        type: "Double"
+    - name: "lon"
+      description: "Longitude coordinate of the patient's location"
+      dataType:
+        type: "Double"
+    - name: "healthcareExpenses"
+      description: "Total healthcare expenses incurred by the patient"
+      dataType:
+        type: "Double"
+    - name: "healthcareCoverage"
+      description: "Total healthcare coverage amount available to the patient"
+      dataType:
+        type: "Double"
+    - name: "income"
+      description: "Annual income of the patient"
+      dataType:
+        type: "Double"
+    type: "table"
+- name: "playground.playground_schema_11083_gd4"
+  database: "playground"
+  schema: "playground_schema_11083_gd4"
+  tables:
+  - name: "l0_bronze_clinical_study_details"
+    description: "Clinical study details providing insights into study titles, statuses,\
+      \ interventions, and conditions."
+    columns:
+    - mappings:
+      - type: "foreign"
+        columnName: "protocolSection"
+        datasetId: "table/analyst_samples_prophecy_dot_healthcare/L0_raw_clinical_trials"
+        datasetName: "table/analyst_samples_prophecy_dot_healthcare/L0_raw_clinical_trials"
+      name: "nctId"
+      description: "The unique identifier for the clinical study"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "briefTitle"
+      description: "A concise title summarizing the clinical study"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "studyType"
+      description: "Type of the clinical study being conducted"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "overallStatus"
+      description: "Current status of the clinical study"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "condition"
+      description: "The medical condition being studied in the clinical trial"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "intervention"
+      description: "Details of the intervention being studied in the clinical trial"
+      tags: []
+      dataType:
+        type: "Struct"
+        fields:
+        - name: "name"
+          dataType:
+            type: "String"
+          description: "Name of the intervention used in the clinical study"
+          tags: []
+    - name: "snomedCode"
+      description: "The SNOMED code associated with the medical condition"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "conditionDescription"
+      description: "Description of the medical condition being studied"
+      tags: []
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "L1_silver_hipaa_compliant_patients"
+    description: "Demographic and socioeconomic information of HIPAA-compliant patients,\
+      \ supporting insights into patient diversity and health equity."
+    columns:
+    - name: "hashedId"
+      description: "A unique hashed identifier for each patient"
+      dataType:
+        type: "String"
+    - name: "age"
+      description: "The age of the patient represented as a string"
+      dataType:
+        type: "String"
+    - name: "marital"
+      description: "Marital status of the patient"
+      dataType:
+        type: "String"
+    - name: "race"
+      description: "The racial background of the patient"
+      dataType:
+        type: "String"
+    - name: "ethnicity"
+      description: "Ethnic background of the patient"
+      dataType:
+        type: "String"
+    - name: "gender"
+      description: "The gender of the patient"
+      dataType:
+        type: "String"
+    - name: "state"
+      description: "The state where the patient resides"
+      dataType:
+        type: "String"
+    - name: "zip3"
+      description: "The first three digits of the patient's zip code"
+      dataType:
+        type: "String"
+    - name: "income"
+      description: "The income level of the patient"
+      dataType:
+        type: "Double"
+    type: "table"
+  - name: "L2_gold_clinical_trial_gap_analysis"
+    description: "Clinical trial gap analysis data, highlighting total costs and associated\
+      \ diagnoses for better resource allocation and trial management."
+    columns:
+    - mappings: []
+      name: "snomed_diagnosis"
+      description: "The SNOMED code representing the diagnosis in the clinical trial"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "total_cost"
+      description: "Total cost associated with the clinical trial"
+      tags: []
+      dataType:
+        type: "Double"
+    - name: "nctIds"
+      description: "Array of unique identifiers for clinical trials"
+      tags: []
+      dataType:
+        type: "Array"
+        dataType:
+          type: "String"
+    type: "table"
+  - name: "L2_gold_billing_daily_report"
+    description: "Daily billing reports detailing total billings and patient counts\
+      \ by provider, supporting financial analysis and operational insights."
+    columns:
+    - name: "day"
+      description: "The date for which the billing report is generated"
+      tags: []
+      dataType:
+        type: "Date"
+    - mappings: []
+      name: "provider"
+      description: "The name of the healthcare provider"
+      tags: []
+      dataType:
+        type: "String"
+    - name: "numPatients"
+      description: "Total number of patients billed on a given day"
+      tags: []
+      dataType:
+        type: "Bigint"
+    - name: "billings"
+      description: "Total billing amount generated for the day"
+      tags: []
+      dataType:
+        type: "Double"
+    type: "table"

@@ -1,0 +1,647 @@
+name: health_template
+description: ''
+version: 1.0.1
+author: tree.connor@prophecy.io
+language: sql
+buildSystem: ''
+buildSystemDetails: null
+pipelines: {}
+datasets: {}
+templates: {}
+jobs: {}
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2025-05-06 17:05:50'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+  businessRules: {}
+subgraphs: {}
+sqlModels: {}
+sqlSnapshots: {}
+sqlTests: {}
+sqlMacros:
+  .prophecy/metadata/sqlmacros/generate_schema_name:
+    name: generate_schema_name
+    macroType: expression
+    description: null
+    author: tree.connor@prophecy.io
+    files:
+    - macros/generate_schema_name.sql
+    - .prophecy/ide/macros/generate_schema_name.json
+    createdAt: '2025-05-06 17:05:52'
+  .prophecy/metadata/sqlmacros/prophecy_tmp_source:
+    name: prophecy_tmp_source
+    macroType: expression
+    description: null
+    author: katherine+411@prophecy.io
+    files:
+    - macros/prophecy_tmp_source.sql
+    createdAt: '2025-09-22 20:34:41'
+sqlSeeds: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/analyst_samples_healthcare:
+    name: analyst_samples.healthcare
+    description: null
+    author: tree.connor@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-05-06 17:37:10'
+    tables:
+    - name: L0_raw_claims
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: id
+          dataType:
+            type: String
+        - name: patientId
+          dataType:
+            type: String
+        - name: providerId
+          dataType:
+            type: String
+        - name: primaryPatientInsuranceId
+          dataType:
+            type: String
+        - name: secondaryPatientInsuranceId
+          dataType:
+            type: String
+        - name: departmentId
+          dataType:
+            type: Integer
+        - name: patientDepartmentId
+          dataType:
+            type: Integer
+        - name: diagnosis1
+          dataType:
+            type: String
+        - name: diagnosis2
+          dataType:
+            type: String
+        - name: diagnosis3
+          dataType:
+            type: String
+        - name: diagnosis4
+          dataType:
+            type: String
+        - name: diagnosis5
+          dataType:
+            type: String
+        - name: diagnosis6
+          dataType:
+            type: String
+        - name: diagnosis7
+          dataType:
+            type: String
+        - name: diagnosis8
+          dataType:
+            type: String
+        - name: referringProviderId
+          dataType:
+            type: String
+        - name: appointmentId
+          dataType:
+            type: String
+        - name: currentIllnessDate
+          dataType:
+            type: Timestamp
+        - name: serviceDate
+          dataType:
+            type: Timestamp
+        - name: supervisingProviderId
+          dataType:
+            type: String
+        - name: status1
+          dataType:
+            type: String
+        - name: status2
+          dataType:
+            type: String
+        - name: statusP
+          dataType:
+            type: String
+        - name: outstanding1
+          dataType:
+            type: Double
+        - name: outstanding2
+          dataType:
+            type: Double
+        - name: outstandingP
+          dataType:
+            type: Double
+        - name: lastBilledDate1
+          dataType:
+            type: Timestamp
+        - name: lastBilledDate2
+          dataType:
+            type: Timestamp
+        - name: lastBilledDateP
+          dataType:
+            type: Timestamp
+        - name: healthcareClaimTypeID1
+          dataType:
+            type: Double
+        - name: healthcareClaimTypeID2
+          dataType:
+            type: Double
+      description: Raw healthcare claims data encompassing patient diagnoses, billing
+        statuses, and insurance details, aiding in claims management and analysis.
+      author: tree.connor@prophecy.io
+      createdAt: '2025-05-07 20:05:12'
+      tableType: table
+    - name: L0_raw_encounters
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: id
+          dataType:
+            type: String
+        - name: start
+          dataType:
+            type: Timestamp
+        - name: stop
+          dataType:
+            type: Timestamp
+        - name: patient
+          dataType:
+            type: String
+        - name: organization
+          dataType:
+            type: String
+        - name: provider
+          dataType:
+            type: String
+        - name: payer
+          dataType:
+            type: String
+        - name: encounterClass
+          dataType:
+            type: String
+        - name: code
+          dataType:
+            type: String
+        - name: description
+          dataType:
+            type: String
+        - name: baseEncounterCost
+          dataType:
+            type: Double
+        - name: totalClaimCost
+          dataType:
+            type: Double
+        - name: payerCoverage
+          dataType:
+            type: Double
+        - name: reasonCode
+          dataType:
+            type: String
+        - name: reasonDescription
+          dataType:
+            type: String
+      description: Patient encounter data capturing costs, payer information, and
+        encounter details, aiding in financial analysis and healthcare management.
+      author: tree.connor@prophecy.io
+      createdAt: '2025-05-07 20:07:03'
+      tableType: table
+    - name: L0_raw_clinical_trials
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: _corrupt_record
+          dataType:
+            type: String
+        - name: protocolSection
+          dataType:
+            type: Struct
+            fields:
+            - name: armsInterventionsModule
+              dataType:
+                type: Struct
+                fields:
+                - name: interventions
+                  dataType:
+                    type: Array
+                    dataType:
+                      type: Struct
+                      fields:
+                      - name: name
+                        dataType:
+                          type: String
+                        description: The name of the intervention in the clinical
+                          trial
+                        tags: []
+                  description: List of interventions used in the clinical trial
+                  tags: []
+              description: Module detailing the arms and interventions of the clinical
+                trial
+              tags: []
+            - name: conditionsModule
+              dataType:
+                type: Struct
+                fields:
+                - name: conditions
+                  dataType:
+                    type: Array
+                    dataType:
+                      type: String
+                  description: List of conditions associated with the clinical trial
+                  tags: []
+              description: Conditions being studied in the clinical trial
+              tags: []
+            - name: designModule
+              dataType:
+                type: Struct
+                fields:
+                - name: studyType
+                  dataType:
+                    type: String
+                  description: Type of study design for the clinical trial
+                  tags: []
+              description: Details about the study design type of the clinical trial
+              tags: []
+            - name: identificationModule
+              dataType:
+                type: Struct
+                fields:
+                - name: briefTitle
+                  dataType:
+                    type: String
+                  description: The brief title of the clinical trial
+                  tags: []
+                - name: nctId
+                  dataType:
+                    type: String
+                  description: The unique identifier for the clinical trial
+                  tags: []
+              description: Identification details including the brief title and NCT
+                ID of the clinical trial
+              tags: []
+            - name: sponsorCollaboratorsModule
+              dataType:
+                type: Struct
+                fields:
+                - name: collaborators
+                  dataType:
+                    type: Array
+                    dataType:
+                      type: Struct
+                      fields:
+                      - name: name
+                        dataType:
+                          type: String
+                        description: Name of the collaborators involved in the clinical
+                          trial
+                        tags: []
+                  description: List of collaborators involved in the clinical trial
+                  tags: []
+                - name: leadSponsor
+                  dataType:
+                    type: Struct
+                    fields:
+                    - name: name
+                      dataType:
+                        type: String
+                      description: Name of the lead sponsor for the clinical trial
+                      tags: []
+                  description: Name of the lead sponsor for the clinical trial
+                  tags: []
+              description: Module containing information about the sponsors and collaborators
+                of the clinical trial
+              tags: []
+            - name: statusModule
+              dataType:
+                type: Struct
+                fields:
+                - name: overallStatus
+                  dataType:
+                    type: String
+                  description: Overall status of the clinical trial
+                  tags: []
+              description: Overall status of the clinical trial
+              tags: []
+        - name: snomedCode
+          dataType:
+            type: String
+        - name: conditionDescription
+          dataType:
+            type: String
+      description: Data on clinical trials, including details on interventions, conditions,
+        and study design, supporting research and analysis in medical studies.
+      author: tree.connor@prophecy.io
+      createdAt: '2025-05-07 20:11:54'
+      tableType: table
+    - name: L0_raw_patients
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: id
+          dataType:
+            type: String
+        - name: birthDate
+          dataType:
+            type: Date
+        - name: deathDate
+          dataType:
+            type: Date
+        - name: ssn
+          dataType:
+            type: String
+        - name: drivers
+          dataType:
+            type: String
+        - name: passport
+          dataType:
+            type: String
+        - name: prefix
+          dataType:
+            type: String
+        - name: first
+          dataType:
+            type: String
+        - name: middle
+          dataType:
+            type: String
+        - name: last
+          dataType:
+            type: String
+        - name: suffix
+          dataType:
+            type: String
+        - name: maiden
+          dataType:
+            type: String
+        - name: marital
+          dataType:
+            type: String
+        - name: race
+          dataType:
+            type: String
+        - name: ethnicity
+          dataType:
+            type: String
+        - name: gender
+          dataType:
+            type: String
+        - name: birthPlace
+          dataType:
+            type: String
+        - name: address
+          dataType:
+            type: String
+        - name: city
+          dataType:
+            type: String
+        - name: state
+          dataType:
+            type: String
+        - name: county
+          dataType:
+            type: String
+        - name: fipsCountyCode
+          dataType:
+            type: String
+        - name: zip
+          dataType:
+            type: String
+        - name: lat
+          dataType:
+            type: Double
+        - name: lon
+          dataType:
+            type: Double
+        - name: healthcareExpenses
+          dataType:
+            type: Double
+        - name: healthcareCoverage
+          dataType:
+            type: Double
+        - name: income
+          dataType:
+            type: Double
+      description: Comprehensive patient demographic and healthcare data, enabling
+        insights into healthcare coverage and expenses across various regions.
+      author: tree.connor@prophecy.io
+      createdAt: '2025-05-07 20:16:47'
+      tableType: table
+  .prophecy/metadata/sqlsources/playground_playground_schema_11083_gd4:
+    name: playground.playground_schema_11083_gd4
+    description: null
+    author: tree.connor@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-05-30 02:11:37'
+    tables:
+    - name: l0_bronze_clinical_study_details
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: nctId
+          dataType:
+            type: String
+        - name: briefTitle
+          dataType:
+            type: String
+        - name: studyType
+          dataType:
+            type: String
+        - name: overallStatus
+          dataType:
+            type: String
+        - name: condition
+          dataType:
+            type: String
+        - name: intervention
+          dataType:
+            type: Struct
+            fields:
+            - name: name
+              dataType:
+                type: String
+              description: Name of the intervention used in the clinical study
+              tags: []
+        - name: snomedCode
+          dataType:
+            type: String
+        - name: conditionDescription
+          dataType:
+            type: String
+      description: Clinical study details providing insights into study titles, statuses,
+        interventions, and conditions.
+      author: tree.connor@prophecy.io
+      createdAt: '2025-05-30 02:11:37'
+      tableType: table
+    - name: L1_silver_hipaa_compliant_patients
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: hashedId
+          dataType:
+            type: String
+        - name: age
+          dataType:
+            type: String
+        - name: marital
+          dataType:
+            type: String
+        - name: race
+          dataType:
+            type: String
+        - name: ethnicity
+          dataType:
+            type: String
+        - name: gender
+          dataType:
+            type: String
+        - name: state
+          dataType:
+            type: String
+        - name: zip3
+          dataType:
+            type: String
+        - name: income
+          dataType:
+            type: Double
+      description: Demographic and socioeconomic information of HIPAA-compliant patients,
+        supporting insights into patient diversity and health equity.
+      author: tree.connor@prophecy.io
+      createdAt: '2025-05-30 02:12:15'
+      tableType: table
+    - name: L2_gold_clinical_trial_gap_analysis
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: snomed_diagnosis
+          dataType:
+            type: String
+        - name: total_cost
+          dataType:
+            type: Double
+        - name: nctIds
+          dataType:
+            type: Array
+            dataType:
+              type: String
+      description: Clinical trial gap analysis data, highlighting total costs and
+        associated diagnoses for better resource allocation and trial management.
+      author: tree.connor@prophecy.io
+      createdAt: '2025-05-30 02:13:08'
+      tableType: table
+    - name: L2_gold_billing_daily_report
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: day
+          dataType:
+            type: Date
+        - name: provider
+          dataType:
+            type: String
+        - name: numPatients
+          dataType:
+            type: Bigint
+        - name: billings
+          dataType:
+            type: Double
+      description: Daily billing reports detailing total billings and patient counts
+        by provider, supporting financial analysis and operational insights.
+      author: tree.connor@prophecy.io
+      createdAt: '2025-05-30 02:14:03'
+      tableType: table
+  .prophecy/metadata/sqlsources/prophecy_tmp_source__L2_clinical_trial_gap_analysis:
+    name: prophecy_tmp_source__L2_clinical_trial_gap_analysis
+    description: null
+    author: tree.connor@prophecy.io
+    files:
+    - models/L2_clinical_trial_gap_analysis/schema.yml
+    createdAt: '2025-06-03 22:07:05'
+    tables: []
+sqlUnreferencedSources: {}
+sqlPipeline:
+  name: sqlPipeline
+  description: null
+  author: tree.connor@prophecy.io
+  createdAt: '2025-05-06 17:05:50'
+dependencies: []
+projectDependencies: {}
+flags:
+  shouldAddDefaultDependenciesIfAbsent: false
+pipelineConfigurations: {}
+projectConfigurations: {}
+sqlOrchestratorPipelines:
+  .prophecy/metadata/sqlorchestratorpipeline/L2_clinical_trial_gap_analysis:
+    name: L2_clinical_trial_gap_analysis
+    schema: null
+    description: Determine the total cost of each diagnosis without any clinical trials.
+    author: tree.connor@prophecy.io
+    files:
+    - models/L2_clinical_trial_gap_analysis/model_L2_clinical_trial_gap_analysis_total_cost_sorted.sql
+    - models/L2_clinical_trial_gap_analysis/model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted.sql
+    - models/L2_clinical_trial_gap_analysis/model_L2_clinical_trial_gap_analysis_null_nct_ids.sql
+    - models/L2_clinical_trial_gap_analysis/schema.yml
+    - models/L2_clinical_trial_gap_analysis/model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis.sql
+    - models/L2_clinical_trial_gap_analysis/model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code.sql
+    - .prophecy/ide/pipelines/L2_clinical_trial_gap_analysis.json
+    - pipelines/L2_clinical_trial_gap_analysis.py
+    createdAt: '2025-05-07 20:23:08'
+  .prophecy/metadata/sqlorchestratorpipeline/L1_hipaa_compliance:
+    name: L1_hipaa_compliance
+    schema: null
+    description: Protect the personal information about your patients to ensure HIPPA
+      compliance.
+    author: tree.connor@prophecy.io
+    files:
+    - models/L1_hipaa_compliance/model_L1_hipaa_compliance_clean_geo.sql
+    - models/L1_hipaa_compliance/schema.yml
+    - .prophecy/ide/pipelines/L1_hipaa_compliance.json
+    - pipelines/L1_hipaa_compliance.py
+    createdAt: '2025-05-07 20:18:29'
+  .prophecy/metadata/sqlorchestratorpipeline/L2_gold_daily_billing_report:
+    name: L2_gold_daily_billing_report
+    schema: null
+    description: Create a daily billing report that shows the number of patients and
+      total billings by provider.
+    author: tree.connor@prophecy.io
+    files:
+    - models/L2_gold_daily_billing_report/schema.yml
+    - models/L2_gold_daily_billing_report/model_L2_gold_daily_billing_report_patient_billings_by_provider.sql
+    - .prophecy/ide/pipelines/L2_gold_daily_billing_report.json
+    - pipelines/L2_gold_daily_billing_report.py
+    createdAt: '2025-05-07 20:27:08'
+  .prophecy/metadata/sqlorchestratorpipeline/L0_raw_clinical_trials:
+    name: L0_raw_clinical_trials
+    schema: null
+    description: Work with clinical trial data source data which includes multi-level
+      nesting. , which means you cannot process the data in its current format. This
+      pipeline transforms the nested data into tabular format for downstream processing.
+    author: tree.connor@prophecy.io
+    files:
+    - models/L0_raw_clinical_trials/schema.yml
+    - models/L0_raw_clinical_trials/model_L0_raw_clinical_trials_cleanse_clinical_trial_data.sql
+    - .prophecy/ide/pipelines/L0_raw_clinical_trials.json
+    - pipelines/L0_raw_clinical_trials.py
+    createdAt: '2025-05-08 18:52:07'
+sqlBusinessApps:
+  .prophecy/metadata/sqlbusinessapp/daily_billing_metric:
+    name: daily_billing_metric
+    schema: null
+    description: null
+    author: mei@prophecy.io
+    files:
+    - apps/daily_billing_metric.json
+    createdAt: '2025-05-07 21:34:17'
+    sqlOrchestrationPipelineName: L2_gold_daily_billing_report

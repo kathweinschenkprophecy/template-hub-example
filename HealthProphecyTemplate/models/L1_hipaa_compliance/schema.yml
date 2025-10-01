@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "model_L1_hipaa_compliance_clean_geo"
+  tags:
+  - "prophecy_temp"

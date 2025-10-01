@@ -1,0 +1,124 @@
+{
+  "id" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted",
+  "metainfo" : {
+    "label" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "alias" : "\"prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis_sorted\"",
+        "materialized" : "table",
+        "database" : "\"product_dev\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis_sorted" : {
+      "id" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis_sorted",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "max_cost_by_diagnosis_sorted",
+        "phase" : 0
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM max_cost_by_diagnosis_sorted\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_2_1",
+          "slug" : "input_port_2_1"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_2_1",
+          "slug" : "output_port_2_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp" : {
+      "id" : "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "max_cost_by_diagnosis_sorted",
+        "x" : 680,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "KWcleHjqKlkf9hXM_WSqn$$jNjSiE0VWu7k6s1gMiiPI##total_cost" ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "total_cost"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "KWcleHjqKlkf9hXM_WSqn$$jNjSiE0VWu7k6s1gMiiPI",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "o_no2MppmUowl6hLO-lN9$$N3WeMAXrXBmGsLCfaASKr",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis" : {
+      "id" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "max_cost_by_diagnosis",
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis",
+          "sourceType" : "Source",
+          "sourceName" : "prophecy_tmp_source__L2_clinical_trial_gap_analysis",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "output_port_1_1",
+          "slug" : "output_port_1_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp_prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis_sorted",
+    "source" : "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp",
+    "sourcePort" : "o_no2MppmUowl6hLO-lN9$$N3WeMAXrXBmGsLCfaASKr",
+    "target" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis_sorted",
+    "targetPort" : "input_port_2_1"
+  }, {
+    "id" : "DrKvP4y-gOlRY3O4BIYK6",
+    "source" : "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis",
+    "sourcePort" : "output_port_1_1",
+    "target" : "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp",
+    "targetPort" : "KWcleHjqKlkf9hXM_WSqn$$jNjSiE0VWu7k6s1gMiiPI"
+  } ],
+  "component" : "Model"
+}

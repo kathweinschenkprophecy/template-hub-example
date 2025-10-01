@@ -1,0 +1,362 @@
+{
+  "id" : "model_L1_hipaa_compliance_clean_geo",
+  "metainfo" : {
+    "label" : "model_L1_hipaa_compliance_clean_geo",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "alias" : "\"L1_silver_hipaa_compliant_patients\"",
+        "materialized" : "table",
+        "database" : "\"playground\"",
+        "schema" : "\"playground_schema_11083_gd4\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "DldBW3Ec83WAKh9C-mmJS$$dK4PpMEhAAh38JDsvbYbK" : {
+      "id" : "DldBW3Ec83WAKh9C-mmJS$$dK4PpMEhAAh38JDsvbYbK",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "clean_geo",
+        "x" : -200,
+        "y" : 40,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##hashedId", "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##age", "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##marital", "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##race", "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##ethnicity", "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##gender", "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##state", "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##zip", "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk##income" ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "hashedId"
+          },
+          "alias" : "hashedId",
+          "_row_id" : "1299269514"
+        }, {
+          "expression" : {
+            "expression" : "age"
+          },
+          "alias" : "age",
+          "_row_id" : "1742539965"
+        }, {
+          "expression" : {
+            "expression" : "marital"
+          },
+          "alias" : "marital",
+          "_row_id" : "389385523"
+        }, {
+          "expression" : {
+            "expression" : "race"
+          },
+          "alias" : "race",
+          "_row_id" : "1102392662"
+        }, {
+          "expression" : {
+            "expression" : "ethnicity"
+          },
+          "alias" : "ethnicity",
+          "_row_id" : "74791976"
+        }, {
+          "expression" : {
+            "expression" : "gender"
+          },
+          "alias" : "gender",
+          "_row_id" : "970727549"
+        }, {
+          "expression" : {
+            "expression" : "state"
+          },
+          "alias" : "state",
+          "_row_id" : "224888054"
+        }, {
+          "expression" : {
+            "expression" : "CASE \n  WHEN SUBSTRING(zip, 1, 3) IN (\n    '036', '059', '063', '102', '203', '556',\n    '692', '790', '821', '823', '830', '831',\n    '878', '879', '884', '890', '893'\n  ) THEN '000'\n  ELSE SUBSTRING(zip, 1, 3)\nEND"
+          },
+          "alias" : "zip3",
+          "_row_id" : "uSg8aTJB3h"
+        }, {
+          "expression" : {
+            "expression" : "income"
+          },
+          "alias" : "income",
+          "_row_id" : "1023653406"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "QhJDk0ekb4CO_rc0SxdqX$$Ia2eo59vPM-Y00eBTMXMG",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "DCAEzX5zEUZO8FiLqtF2m$$LsQpaiLRHc3y5ooDQSJzu" : {
+      "id" : "DCAEzX5zEUZO8FiLqtF2m$$LsQpaiLRHc3y5ooDQSJzu",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "clean_dates",
+        "x" : -400,
+        "y" : 40,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##hashedId", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##birthDate", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##deathDate", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##marital", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##race", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##ethnicity", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##gender", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##state", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##zip", "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M##income" ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "hashedId"
+          },
+          "alias" : "hashedId",
+          "_row_id" : "147160449"
+        }, {
+          "expression" : {
+            "expression" : "CASE \n    WHEN YEAR(CURRENT_DATE) - YEAR(birthDate) > 89 THEN '90+'\n    ELSE CAST(YEAR(CURRENT_DATE) - YEAR(birthDate) AS STRING)\nEND"
+          },
+          "alias" : "age",
+          "_row_id" : "myR8FQtr1o"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN YEAR(current_date()) - YEAR(birthDate) > 89 THEN '90+'\n  ELSE CAST(YEAR(deathDate) AS STRING)\nEND"
+          },
+          "alias" : "deathDate",
+          "_row_id" : "1743343950"
+        }, {
+          "expression" : {
+            "expression" : "marital"
+          },
+          "alias" : "marital",
+          "_row_id" : "918692355"
+        }, {
+          "expression" : {
+            "expression" : "race"
+          },
+          "alias" : "race",
+          "_row_id" : "1150069988"
+        }, {
+          "expression" : {
+            "expression" : "ethnicity"
+          },
+          "alias" : "ethnicity",
+          "_row_id" : "2605845"
+        }, {
+          "expression" : {
+            "expression" : "gender"
+          },
+          "alias" : "gender",
+          "_row_id" : "1633319650"
+        }, {
+          "expression" : {
+            "expression" : "state"
+          },
+          "alias" : "state",
+          "_row_id" : "1319613631"
+        }, {
+          "expression" : {
+            "expression" : "zip"
+          },
+          "alias" : "zip",
+          "_row_id" : "97166942"
+        }, {
+          "expression" : {
+            "expression" : "income"
+          },
+          "alias" : "income",
+          "_row_id" : "1942077906"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "JnbwYtb0FlWlTV9RtVC-R$$f-PnZFdALFdMO7w479hpN",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "QJ2rLnMshvjqZMuGvPw32$$UEEJu9OHZ5Yd4jYqBJDZ8" : {
+      "id" : "QJ2rLnMshvjqZMuGvPw32$$UEEJu9OHZ5Yd4jYqBJDZ8",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "hashed_patient_ids",
+        "x" : -600,
+        "y" : 40,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##id", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##birthDate", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##deathDate", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##marital", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##race", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##ethnicity", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##gender", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##state", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##zip", "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh##income" ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "sha2(id, 256)"
+          },
+          "alias" : "hashedId",
+          "_row_id" : "1779735263"
+        }, {
+          "expression" : {
+            "expression" : "birthDate"
+          },
+          "alias" : "birthDate",
+          "_row_id" : "468403180"
+        }, {
+          "expression" : {
+            "expression" : "deathDate"
+          },
+          "alias" : "deathDate",
+          "_row_id" : "819519811"
+        }, {
+          "expression" : {
+            "expression" : "marital"
+          },
+          "alias" : "marital",
+          "_row_id" : "718968816"
+        }, {
+          "expression" : {
+            "expression" : "race"
+          },
+          "alias" : "race",
+          "_row_id" : "1144701823"
+        }, {
+          "expression" : {
+            "expression" : "ethnicity"
+          },
+          "alias" : "ethnicity",
+          "_row_id" : "2114733403"
+        }, {
+          "expression" : {
+            "expression" : "gender"
+          },
+          "alias" : "gender",
+          "_row_id" : "514660966"
+        }, {
+          "expression" : {
+            "expression" : "state"
+          },
+          "alias" : "state",
+          "_row_id" : "916412681"
+        }, {
+          "expression" : {
+            "expression" : "zip"
+          },
+          "alias" : "zip",
+          "_row_id" : "268340984"
+        }, {
+          "expression" : {
+            "expression" : "income"
+          },
+          "alias" : "income",
+          "_row_id" : "1149741156"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "3OzAs52Ha7_nX8BEQlZ72$$sECJVXtxjOaTZv-Td2r8M",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "xCBh8i8CqjutXsGV10V5g" : {
+      "id" : "xCBh8i8CqjutXsGV10V5g",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "L1_silver_hipaa_compliant_patients",
+        "phase" : 0
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM clean_geo\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Qi7RrUbSU-UGH4fUoEAC9",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "zEV6mUE2RMIdN3fXB58Pu",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "z1JJdN8-kcDxCOOvlzQlk$$dAOOK-AMGCDK0ECwoGLIF" : {
+      "id" : "z1JJdN8-kcDxCOOvlzQlk$$dAOOK-AMGCDK0ECwoGLIF",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L0_raw_patients",
+        "x" : -800,
+        "y" : 40,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_patients",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "vMKarP-1YpnYvwd02rKK2$$tgDwiFftKLnO8obI8iBcf",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "6r6ek4nZHY5VT4vuDNVRc$$GtndqM8-qWAb80PX3eyZ3",
+    "source" : "DldBW3Ec83WAKh9C-mmJS$$dK4PpMEhAAh38JDsvbYbK",
+    "sourcePort" : "QhJDk0ekb4CO_rc0SxdqX$$Ia2eo59vPM-Y00eBTMXMG",
+    "target" : "xCBh8i8CqjutXsGV10V5g",
+    "targetPort" : "Qi7RrUbSU-UGH4fUoEAC9"
+  }, {
+    "id" : "f2dgR9VzyUkoJpu2sdnJW",
+    "source" : "DCAEzX5zEUZO8FiLqtF2m$$LsQpaiLRHc3y5ooDQSJzu",
+    "sourcePort" : "JnbwYtb0FlWlTV9RtVC-R$$f-PnZFdALFdMO7w479hpN",
+    "target" : "DldBW3Ec83WAKh9C-mmJS$$dK4PpMEhAAh38JDsvbYbK",
+    "targetPort" : "mOeBRw5PCSvIUfy0BB_Lj$$6LWqApJU6ohoIYGG5WTzk"
+  }, {
+    "id" : "oCE7ufgYFgloj_A3puQw7",
+    "source" : "QJ2rLnMshvjqZMuGvPw32$$UEEJu9OHZ5Yd4jYqBJDZ8",
+    "sourcePort" : "3OzAs52Ha7_nX8BEQlZ72$$sECJVXtxjOaTZv-Td2r8M",
+    "target" : "DCAEzX5zEUZO8FiLqtF2m$$LsQpaiLRHc3y5ooDQSJzu",
+    "targetPort" : "ydT557dlN6Kkns4yrpcco$$F3ZIsnd3ZO5nFNli-WU2M"
+  }, {
+    "id" : "MdLwiuaEI_ZJqHaav0mLM",
+    "source" : "z1JJdN8-kcDxCOOvlzQlk$$dAOOK-AMGCDK0ECwoGLIF",
+    "sourcePort" : "vMKarP-1YpnYvwd02rKK2$$tgDwiFftKLnO8obI8iBcf",
+    "target" : "QJ2rLnMshvjqZMuGvPw32$$UEEJu9OHZ5Yd4jYqBJDZ8",
+    "targetPort" : "aMtiImINVlzBmDqNM_o61$$UGRNSMh-ycvGZfeEHH6zh"
+  } ],
+  "component" : "Model"
+}

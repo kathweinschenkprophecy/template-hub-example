@@ -1,0 +1,237 @@
+{
+  "id" : "L1_hipaa_compliance",
+  "metainfo" : {
+    "label" : "L1_hipaa_compliance",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "schedule" : {
+      "cron" : "* 0 2 * * * *",
+      "timeZone" : "GMT",
+      "emailOnSuccess" : false,
+      "emailOnFailure" : false,
+      "emailOnStart" : false,
+      "emails" : [ "email@gmail.com" ],
+      "enabled" : false
+    }
+  },
+  "processes" : {
+    "xCBh8i8CqjutXsGV10V5g" : {
+      "id" : "xCBh8i8CqjutXsGV10V5g",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "model_L1_hipaa_compliance_clean_geo",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "model_L1_hipaa_compliance_clean_geo"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "xCBh8i8CqjutXsGV10V5g", "DldBW3Ec83WAKh9C-mmJS$$dK4PpMEhAAh38JDsvbYbK", "DCAEzX5zEUZO8FiLqtF2m$$LsQpaiLRHc3y5ooDQSJzu", "QJ2rLnMshvjqZMuGvPw32$$UEEJu9OHZ5Yd4jYqBJDZ8", "z1JJdN8-kcDxCOOvlzQlk$$dAOOK-AMGCDK0ECwoGLIF" ],
+        "type" : "table",
+        "isTemporaryTable" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "model_L1_hipaa_compliance_clean_geo_in_0",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "model_L1_hipaa_compliance_clean_geo_out_0",
+          "slug" : "out_0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "z1JJdN8-kcDxCOOvlzQlk$$dAOOK-AMGCDK0ECwoGLIF" : {
+      "id" : "z1JJdN8-kcDxCOOvlzQlk$$dAOOK-AMGCDK0ECwoGLIF",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L0_raw_patients",
+        "x" : -800,
+        "y" : 40,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_patients",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "HoDuHzK4ovw7f1kc7aF5U$$Qcq_yArdGwzpouz9Wo-Yf",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "vMKarP-1YpnYvwd02rKK2$$tgDwiFftKLnO8obI8iBcf",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "birthDate",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "deathDate",
+              "dataType" : {
+                "type" : "Date"
+              }
+            }, {
+              "name" : "ssn",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "drivers",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "passport",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "prefix",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "first",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "middle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "last",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "suffix",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "maiden",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "marital",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "race",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "ethnicity",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "gender",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "birthPlace",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "address",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "city",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "state",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "county",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "fipsCountyCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "zip",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "lat",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "lon",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "healthcareExpenses",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "healthcareCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "income",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "MdLwiuaEI_ZJqHaav0mLM",
+    "source" : "z1JJdN8-kcDxCOOvlzQlk$$dAOOK-AMGCDK0ECwoGLIF",
+    "sourcePort" : "vMKarP-1YpnYvwd02rKK2$$tgDwiFftKLnO8obI8iBcf",
+    "target" : "xCBh8i8CqjutXsGV10V5g",
+    "targetPort" : "model_L1_hipaa_compliance_clean_geo_in_0"
+  } ],
+  "component" : "Pipeline"
+}

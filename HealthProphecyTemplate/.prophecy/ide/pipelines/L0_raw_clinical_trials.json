@@ -1,0 +1,1258 @@
+{
+  "id" : "L0_raw_clinical_trials",
+  "metainfo" : {
+    "label" : "L0_raw_clinical_trials",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "schedule" : {
+      "cron" : "* 0 2 * * * *",
+      "timeZone" : "GMT",
+      "emailOnSuccess" : false,
+      "emailOnFailure" : false,
+      "emailOnStart" : false,
+      "emails" : [ "email@gmail.com" ],
+      "enabled" : false
+    }
+  },
+  "processes" : {
+    "nghWz7aECNhINiV5LhNQ_$$tlzsPnb9CB2LV5Yw88MVn" : {
+      "id" : "nghWz7aECNhINiV5LhNQ_$$tlzsPnb9CB2LV5Yw88MVn",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L0_raw_clinical_trials",
+        "x" : -840,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_clinical_trials",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "e_siGjglIS3LoJ-jZlEhh$$Dd9UMdsLVxg3TNMuCgrZL",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "eMdVSdOt_l7tFTjLjbT5t$$aDztkG7XlisajloJ5dWqf",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "_corrupt_record",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "protocolSection",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "armsInterventionsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "interventions",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "Struct",
+                          "fields" : [ {
+                            "name" : "name",
+                            "dataType" : {
+                              "type" : "String"
+                            },
+                            "description" : "The name of the intervention in the clinical trial",
+                            "tags" : [ ]
+                          } ]
+                        }
+                      },
+                      "description" : "List of interventions used in the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Module detailing the arms and interventions of the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "conditionsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "conditions",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "String"
+                        }
+                      },
+                      "description" : "List of conditions associated with the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Conditions being studied in the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "designModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "studyType",
+                      "dataType" : {
+                        "type" : "String"
+                      },
+                      "description" : "Type of study design for the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Details about the study design type of the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "identificationModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "briefTitle",
+                      "dataType" : {
+                        "type" : "String"
+                      },
+                      "description" : "The brief title of the clinical trial",
+                      "tags" : [ ]
+                    }, {
+                      "name" : "nctId",
+                      "dataType" : {
+                        "type" : "String"
+                      },
+                      "description" : "The unique identifier for the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Identification details including the brief title and NCT ID of the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "sponsorCollaboratorsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "collaborators",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "Struct",
+                          "fields" : [ {
+                            "name" : "name",
+                            "dataType" : {
+                              "type" : "String"
+                            },
+                            "description" : "Name of the collaborators involved in the clinical trial",
+                            "tags" : [ ]
+                          } ]
+                        }
+                      },
+                      "description" : "List of collaborators involved in the clinical trial",
+                      "tags" : [ ]
+                    }, {
+                      "name" : "leadSponsor",
+                      "dataType" : {
+                        "type" : "Struct",
+                        "fields" : [ {
+                          "name" : "name",
+                          "dataType" : {
+                            "type" : "String"
+                          },
+                          "description" : "Name of the lead sponsor for the clinical trial",
+                          "tags" : [ ]
+                        } ]
+                      },
+                      "description" : "Name of the lead sponsor for the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Module containing information about the sponsors and collaborators of the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "statusModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "overallStatus",
+                      "dataType" : {
+                        "type" : "String"
+                      },
+                      "description" : "Overall status of the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Overall status of the clinical trial",
+                  "tags" : [ ]
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "MdU0Q8Zb1kudqWMWC4VHb$$hp5JIS4bn2Z0eNBtoR8PA" : {
+      "id" : "MdU0Q8Zb1kudqWMWC4VHb$$hp5JIS4bn2Z0eNBtoR8PA",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2",
+        "x" : -40,
+        "y" : -160,
+        "height" : 60,
+        "width" : 220.0000457763672,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "4. Output to Databricks Table"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "6hLYa2hRnHRX_O5w_Fnbh$$th7ShulENOcyefrNELe_T" : {
+      "id" : "6hLYa2hRnHRX_O5w_Fnbh$$th7ShulENOcyefrNELe_T",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_1_1_1_1",
+        "x" : -700,
+        "y" : -160,
+        "height" : 75.9999771118164,
+        "width" : 219.99990844726562,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "1. Filter malformed records"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "yCH7wzGiRwZFR9qKsqAg-$$hR9CQHb6Qb1iCrWGVAS-M" : {
+      "id" : "yCH7wzGiRwZFR9qKsqAg-$$hR9CQHb6Qb1iCrWGVAS-M",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_1",
+        "x" : -460,
+        "y" : -160,
+        "height" : 271.99993896484375,
+        "width" : 220.0000457763672,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "2. Flatten JSON\n\n- nctId\n- briefTitle\n- studyType\n- overallStatus\n- conditions\n- interventions\n- snomedCode\n- conditionDescription"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "OS0hLobUELDQ1zJSkCx42$$zBymTNY8Y5YAnAOOxmkRF" : {
+      "id" : "OS0hLobUELDQ1zJSkCx42$$zBymTNY8Y5YAnAOOxmkRF",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "filter_malformed_json",
+        "x" : -640,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "80w40uZPsmAcgSXeDBsYd$$Sw0w6U4Ufva2KSnlUlr82##_corrupt_record" ],
+        "condition" : {
+          "expression" : "_corrupt_record IS NULL"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "80w40uZPsmAcgSXeDBsYd$$Sw0w6U4Ufva2KSnlUlr82",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "_corrupt_record",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "protocolSection",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "armsInterventionsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "interventions",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "Struct",
+                          "fields" : [ {
+                            "name" : "name",
+                            "dataType" : {
+                              "type" : "String"
+                            },
+                            "description" : "The name of the intervention in the clinical trial",
+                            "tags" : [ ]
+                          } ]
+                        }
+                      },
+                      "description" : "List of interventions used in the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Module detailing the arms and interventions of the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "conditionsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "conditions",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "String"
+                        }
+                      },
+                      "description" : "List of conditions associated with the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Conditions being studied in the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "designModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "studyType",
+                      "dataType" : {
+                        "type" : "String"
+                      },
+                      "description" : "Type of study design for the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Details about the study design type of the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "identificationModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "briefTitle",
+                      "dataType" : {
+                        "type" : "String"
+                      },
+                      "description" : "The brief title of the clinical trial",
+                      "tags" : [ ]
+                    }, {
+                      "name" : "nctId",
+                      "dataType" : {
+                        "type" : "String"
+                      },
+                      "description" : "The unique identifier for the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Identification details including the brief title and NCT ID of the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "sponsorCollaboratorsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "collaborators",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "Struct",
+                          "fields" : [ {
+                            "name" : "name",
+                            "dataType" : {
+                              "type" : "String"
+                            },
+                            "description" : "Name of the collaborators involved in the clinical trial",
+                            "tags" : [ ]
+                          } ]
+                        }
+                      },
+                      "description" : "List of collaborators involved in the clinical trial",
+                      "tags" : [ ]
+                    }, {
+                      "name" : "leadSponsor",
+                      "dataType" : {
+                        "type" : "Struct",
+                        "fields" : [ {
+                          "name" : "name",
+                          "dataType" : {
+                            "type" : "String"
+                          },
+                          "description" : "Name of the lead sponsor for the clinical trial",
+                          "tags" : [ ]
+                        } ]
+                      },
+                      "description" : "Name of the lead sponsor for the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Module containing information about the sponsors and collaborators of the clinical trial",
+                  "tags" : [ ]
+                }, {
+                  "name" : "statusModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "overallStatus",
+                      "dataType" : {
+                        "type" : "String"
+                      },
+                      "description" : "Overall status of the clinical trial",
+                      "tags" : [ ]
+                    } ]
+                  },
+                  "description" : "Overall status of the clinical trial",
+                  "tags" : [ ]
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "3I2aeX7yuUZak0E9XYo96$$y0Bq7EyNhpXmw0hPt8P-z",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "_corrupt_record",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "protocolSection",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "armsInterventionsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "interventions",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "Struct",
+                          "fields" : [ {
+                            "name" : "name",
+                            "dataType" : {
+                              "type" : "String"
+                            }
+                          } ]
+                        }
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "conditionsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "conditions",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "String"
+                        }
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "designModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "studyType",
+                      "dataType" : {
+                        "type" : "String"
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "identificationModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "briefTitle",
+                      "dataType" : {
+                        "type" : "String"
+                      }
+                    }, {
+                      "name" : "nctId",
+                      "dataType" : {
+                        "type" : "String"
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "sponsorCollaboratorsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "collaborators",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "Struct",
+                          "fields" : [ {
+                            "name" : "name",
+                            "dataType" : {
+                              "type" : "String"
+                            }
+                          } ]
+                        }
+                      }
+                    }, {
+                      "name" : "leadSponsor",
+                      "dataType" : {
+                        "type" : "Struct",
+                        "fields" : [ {
+                          "name" : "name",
+                          "dataType" : {
+                            "type" : "String"
+                          }
+                        } ]
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "statusModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "overallStatus",
+                      "dataType" : {
+                        "type" : "String"
+                      }
+                    } ]
+                  }
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "mouyOu7tkU0SUhUdRrz-Y$$DxgJEEwyG01GNpy3g862M" : {
+      "id" : "mouyOu7tkU0SUhUdRrz-Y$$DxgJEEwyG01GNpy3g862M",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "l0_bronze_clinical_study_details",
+        "x" : 40,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "l0_bronze_clinical_study_details",
+          "sourceType" : "Table",
+          "sourceName" : "playground.playground_schema_11083_gd4",
+          "alias" : "",
+          "additionalProperties" : null
+        },
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "nf6DUfLQOuE8ZoJWrl4I1$$ZtTEyD9AOS-i3ofJWPnde",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "studyType",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "overallStatus",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "condition",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "intervention",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "name",
+                  "dataType" : {
+                    "type" : "String"
+                  }
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "C2c4xiOOZAkCZJE66Qw_y$$u3rxmsPU3W0SnkTLv6Rvo",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "studyType",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "overallStatus",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "condition",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "intervention",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "name",
+                  "dataType" : {
+                    "type" : "String"
+                  }
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "Cdf-dXvTqTShQBK6kEDHR$$F7Sltb8OI7ipAGQ3Lwz-0" : {
+      "id" : "Cdf-dXvTqTShQBK6kEDHR$$F7Sltb8OI7ipAGQ3Lwz-0",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_3",
+        "x" : -860,
+        "y" : -440,
+        "height" : 104.00000762939453,
+        "width" : 340,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "# Flattening JSON Data"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "_9f5dLtqJ2WcHGdiKjPLy$$lij8suUsTauhPtGGDnk1z" : {
+      "id" : "_9f5dLtqJ2WcHGdiKjPLy$$lij8suUsTauhPtGGDnk1z",
+      "component" : "FlattenSchema",
+      "metadata" : {
+        "label" : "clinical_trial_conditions_interventions",
+        "x" : -440,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.conditionsModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.conditionsModule.conditions", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.armsInterventionsModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.armsInterventionsModule.interventions", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.identificationModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.identificationModule.nctId", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.identificationModule.briefTitle", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.designModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.designModule.studyType", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.statusModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.statusModule.overallStatus", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##snomedCode", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##conditionDescription" ],
+        "flattenExpressions" : [ {
+          "expression" : {
+            "expression" : "protocolSection.conditionsModule.conditions"
+          },
+          "alias" : "condition",
+          "_row_id" : "946136711"
+        }, {
+          "expression" : {
+            "expression" : "protocolSection.armsInterventionsModule.interventions"
+          },
+          "alias" : "intervention",
+          "_row_id" : "984128967"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "protocolSection.identificationModule.nctId"
+          },
+          "alias" : "nctId",
+          "_row_id" : "998596617"
+        }, {
+          "expression" : {
+            "expression" : "protocolSection.identificationModule.briefTitle"
+          },
+          "alias" : "briefTitle",
+          "_row_id" : "401705701"
+        }, {
+          "expression" : {
+            "expression" : "protocolSection.designModule.studyType"
+          },
+          "alias" : "studyType",
+          "_row_id" : "1100978519"
+        }, {
+          "expression" : {
+            "expression" : "protocolSection.statusModule.overallStatus"
+          },
+          "alias" : "overallStatus",
+          "_row_id" : "716154868"
+        }, {
+          "expression" : {
+            "expression" : "condition.col"
+          },
+          "alias" : "condition",
+          "_row_id" : "184642605"
+        }, {
+          "expression" : {
+            "expression" : "intervention.col"
+          },
+          "alias" : "intervention",
+          "_row_id" : "1282486508"
+        }, {
+          "expression" : {
+            "expression" : "snomedCode"
+          },
+          "alias" : "snomedCode",
+          "_row_id" : "443752151"
+        }, {
+          "expression" : {
+            "expression" : "conditionDescription"
+          },
+          "alias" : "conditionDescription",
+          "_row_id" : "333992422"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "_corrupt_record",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "protocolSection",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "armsInterventionsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "interventions",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "Struct",
+                          "fields" : [ {
+                            "name" : "name",
+                            "dataType" : {
+                              "type" : "String"
+                            }
+                          } ]
+                        }
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "conditionsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "conditions",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "String"
+                        }
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "designModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "studyType",
+                      "dataType" : {
+                        "type" : "String"
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "identificationModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "briefTitle",
+                      "dataType" : {
+                        "type" : "String"
+                      }
+                    }, {
+                      "name" : "nctId",
+                      "dataType" : {
+                        "type" : "String"
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "sponsorCollaboratorsModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "collaborators",
+                      "dataType" : {
+                        "type" : "Array",
+                        "dataType" : {
+                          "type" : "Struct",
+                          "fields" : [ {
+                            "name" : "name",
+                            "dataType" : {
+                              "type" : "String"
+                            }
+                          } ]
+                        }
+                      }
+                    }, {
+                      "name" : "leadSponsor",
+                      "dataType" : {
+                        "type" : "Struct",
+                        "fields" : [ {
+                          "name" : "name",
+                          "dataType" : {
+                            "type" : "String"
+                          }
+                        } ]
+                      }
+                    } ]
+                  }
+                }, {
+                  "name" : "statusModule",
+                  "dataType" : {
+                    "type" : "Struct",
+                    "fields" : [ {
+                      "name" : "overallStatus",
+                      "dataType" : {
+                        "type" : "String"
+                      }
+                    } ]
+                  }
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "qf_cufuAaOuOU9XyrXeko$$pTIy1sMv9268NFhCGjOci",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "studyType",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "overallStatus",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "condition",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "intervention",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "name",
+                  "dataType" : {
+                    "type" : "String"
+                  }
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "GnSBHmywfmwfOhNSriX9_$$-NUPNXaKDFWpCD2g7bGAj" : {
+      "id" : "GnSBHmywfmwfOhNSriX9_$$-NUPNXaKDFWpCD2g7bGAj",
+      "component" : "DataCleansing",
+      "metadata" : {
+        "label" : "cleanse_clinical_trial_data",
+        "x" : -200,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "trimWhiteSpace" : true,
+        "replaceNullForNumericFields" : false,
+        "cleanLetters" : false,
+        "replaceNullTextWith" : "NA",
+        "removeRowNullAllCols" : false,
+        "replaceNullTextFields" : false,
+        "relation_name" : [ "clinical_trial_conditions_interventions" ],
+        "columnNames" : [ "conditionDescription" ],
+        "_oldMacroProperties" : {
+          "macroName" : "DataCleansing",
+          "projectName" : "DatabricksSqlBasics",
+          "parameters" : [ {
+            "name" : "relation_name",
+            "value" : "['clinical_trial_conditions_interventions']"
+          }, {
+            "name" : "schema",
+            "value" : "[{\"name\": \"nctId\", \"dataType\": \"String\"}, {\"name\": \"briefTitle\", \"dataType\": \"String\"}, {\"name\": \"studyType\", \"dataType\": \"String\"}, {\"name\": \"overallStatus\", \"dataType\": \"String\"}, {\"name\": \"condition\", \"dataType\": \"String\"}, {\"name\": \"intervention\", \"dataType\": \"Struct\"}, {\"name\": \"snomedCode\", \"dataType\": \"String\"}, {\"name\": \"conditionDescription\", \"dataType\": \"String\"}]"
+          }, {
+            "name" : "modifyCase",
+            "value" : "keepOriginal"
+          }, {
+            "name" : "columnNames",
+            "value" : "[\"conditionDescription\"]"
+          }, {
+            "name" : "replaceNullTextFields",
+            "value" : "false"
+          }, {
+            "name" : "replaceNullTextWith",
+            "value" : "NA"
+          }, {
+            "name" : "replaceNullForNumericFields",
+            "value" : "false"
+          }, {
+            "name" : "replaceNullNumericWith",
+            "value" : "0"
+          }, {
+            "name" : "trimWhiteSpace",
+            "value" : "true"
+          }, {
+            "name" : "removeTabsLineBreaksAndDuplicateWhitespace",
+            "value" : "false"
+          }, {
+            "name" : "allWhiteSpace",
+            "value" : "false"
+          }, {
+            "name" : "cleanLetters",
+            "value" : "false"
+          }, {
+            "name" : "cleanPunctuations",
+            "value" : "false"
+          }, {
+            "name" : "cleanNumbers",
+            "value" : "false"
+          }, {
+            "name" : "removeRowNullAllCols",
+            "value" : "false"
+          } ]
+        },
+        "schema" : "[{\"name\": \"nctId\", \"dataType\": \"String\"}, {\"name\": \"briefTitle\", \"dataType\": \"String\"}, {\"name\": \"studyType\", \"dataType\": \"String\"}, {\"name\": \"overallStatus\", \"dataType\": \"String\"}, {\"name\": \"condition\", \"dataType\": \"String\"}, {\"name\": \"intervention\", \"dataType\": \"Struct\"}, {\"name\": \"snomedCode\", \"dataType\": \"String\"}, {\"name\": \"conditionDescription\", \"dataType\": \"String\"}]",
+        "allWhiteSpace" : false,
+        "removeTabsLineBreaksAndDuplicateWhitespace" : false,
+        "modifyCase" : "keepOriginal",
+        "cleanPunctuations" : false,
+        "cleanNumbers" : false,
+        "replaceNullNumericWith" : 0
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "L7NN_Cs83gtACV9qzFW14$$q5b3IRXVRvr1VqWCTB1sW",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "studyType",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "overallStatus",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "condition",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "intervention",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "name",
+                  "dataType" : {
+                    "type" : "String"
+                  }
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "ir4xq9vOI_JgdaVNIYVjt$$Vs_SLNfggLLuN8i631Omx",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "studyType",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "overallStatus",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "condition",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "intervention",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "name",
+                  "dataType" : {
+                    "type" : "String"
+                  }
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      },
+      "componentInfo" : {
+        "gemId" : "DataCleansing_DatabricksSqlBasics",
+        "name" : "DataCleansing",
+        "projectName" : "DatabricksSqlBasics",
+        "sourceProjectName" : "DatabricksSqlBasics",
+        "sourceProjectVersion" : "0.0.4"
+      }
+    },
+    "gMFxgCgrKw7pyLeloZdf4$$MlSgWQ8DXsjSuf4CArfjK" : {
+      "id" : "gMFxgCgrKw7pyLeloZdf4$$MlSgWQ8DXsjSuf4CArfjK",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_1_1_1",
+        "x" : -240,
+        "y" : -160,
+        "height" : 79.99995422363281,
+        "width" : 220.0000457763672,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "3. Remove leading and trailing whitespace from conditionDescription"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "a6Q5vZEi3VMHIks2F_8yS",
+    "source" : "_9f5dLtqJ2WcHGdiKjPLy$$lij8suUsTauhPtGGDnk1z",
+    "sourcePort" : "qf_cufuAaOuOU9XyrXeko$$pTIy1sMv9268NFhCGjOci",
+    "target" : "GnSBHmywfmwfOhNSriX9_$$-NUPNXaKDFWpCD2g7bGAj",
+    "targetPort" : "L7NN_Cs83gtACV9qzFW14$$q5b3IRXVRvr1VqWCTB1sW"
+  }, {
+    "id" : "5cznR8D9gA4lOlJh7VRJr",
+    "source" : "OS0hLobUELDQ1zJSkCx42$$zBymTNY8Y5YAnAOOxmkRF",
+    "sourcePort" : "3I2aeX7yuUZak0E9XYo96$$y0Bq7EyNhpXmw0hPt8P-z",
+    "target" : "_9f5dLtqJ2WcHGdiKjPLy$$lij8suUsTauhPtGGDnk1z",
+    "targetPort" : "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7"
+  }, {
+    "id" : "HFElRlN0ikBGdzVQXHSLs",
+    "source" : "nghWz7aECNhINiV5LhNQ_$$tlzsPnb9CB2LV5Yw88MVn",
+    "sourcePort" : "eMdVSdOt_l7tFTjLjbT5t$$aDztkG7XlisajloJ5dWqf",
+    "target" : "OS0hLobUELDQ1zJSkCx42$$zBymTNY8Y5YAnAOOxmkRF",
+    "targetPort" : "80w40uZPsmAcgSXeDBsYd$$Sw0w6U4Ufva2KSnlUlr82"
+  }, {
+    "id" : "6J4lMiGfgURKSOMdVBsfl",
+    "source" : "GnSBHmywfmwfOhNSriX9_$$-NUPNXaKDFWpCD2g7bGAj",
+    "sourcePort" : "ir4xq9vOI_JgdaVNIYVjt$$Vs_SLNfggLLuN8i631Omx",
+    "target" : "mouyOu7tkU0SUhUdRrz-Y$$DxgJEEwyG01GNpy3g862M",
+    "targetPort" : "nf6DUfLQOuE8ZoJWrl4I1$$ZtTEyD9AOS-i3ofJWPnde"
+  } ],
+  "component" : "Pipeline"
+}

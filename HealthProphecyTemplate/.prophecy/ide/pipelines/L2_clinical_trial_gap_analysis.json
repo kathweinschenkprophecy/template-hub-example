@@ -1,0 +1,1463 @@
+{
+  "id" : "L2_clinical_trial_gap_analysis",
+  "metainfo" : {
+    "label" : "L2_clinical_trial_gap_analysis",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "schedule" : {
+      "cron" : "* 0 2 * * * *",
+      "timeZone" : "GMT",
+      "emailOnSuccess" : false,
+      "emailOnFailure" : false,
+      "emailOnStart" : false,
+      "emails" : [ "email@gmail.com" ],
+      "enabled" : false
+    }
+  },
+  "processes" : {
+    "W92ORy-5Qm3CpHw7O8n31$$8gj_DgeSzwZQsecOx6D0Q" : {
+      "id" : "W92ORy-5Qm3CpHw7O8n31$$8gj_DgeSzwZQsecOx6D0Q",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2_1_1_1_1",
+        "x" : 320,
+        "y" : 20,
+        "height" : 60,
+        "width" : 220.0000457763672,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "5. Aggregate nctIds by diagnosis and cost"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "KlKW1WJuIReUcFykh6t32" : {
+      "id" : "KlKW1WJuIReUcFykh6t32",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L0_raw_encounters",
+        "x" : -1020,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_encounters",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "1KbcuvCoU989_E5WAAyYt",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "HvgfPdYVkym5KREYuWbvv",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "start",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "stop",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "organization",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "payer",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "encounterClass",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "totalClaimCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "payerCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "reasonCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "reasonDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "96Lkt_ShJNBzOmltTMrAL$$_1Hhm8cE1-dced4vmVZdm" : {
+      "id" : "96Lkt_ShJNBzOmltTMrAL$$_1Hhm8cE1-dced4vmVZdm",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2_1_1_1_1_1",
+        "x" : 620,
+        "y" : 20,
+        "height" : 80.0000228881836,
+        "width" : 220.0000457763672,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "6. Filter for diagnoses without associated Clinical Trials"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "1m4ZTjV2KfY1-sBtRfcNL$$4hUaqo2TUsUvJVEfIZuxH" : {
+      "id" : "1m4ZTjV2KfY1-sBtRfcNL$$4hUaqo2TUsUvJVEfIZuxH",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2_1_1",
+        "x" : -360,
+        "y" : 20,
+        "height" : 60,
+        "width" : 219.99990844726562,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "3. Replace NULL value with \"No Diagnosis\""
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY" : {
+      "id" : "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY",
+      "component" : "DataCleansing",
+      "metadata" : {
+        "label" : "clean_null_diagnosis",
+        "x" : -300,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "trimWhiteSpace" : false,
+        "replaceNullForNumericFields" : false,
+        "cleanLetters" : false,
+        "replaceNullTextWith" : "No Diagnosis",
+        "removeRowNullAllCols" : false,
+        "replaceNullTextFields" : true,
+        "relation_name" : [ "total_cost_by_reason_code" ],
+        "columnNames" : [ "snomed_diagnosis" ],
+        "_oldMacroProperties" : {
+          "macroName" : "DataCleansing",
+          "projectName" : "DatabricksSqlBasics",
+          "parameters" : [ {
+            "name" : "relation_name",
+            "value" : "['total_cost_by_reason_code']"
+          }, {
+            "name" : "schema",
+            "value" : "[{\"name\": \"snomed_diagnosis\", \"dataType\": \"String\"}, {\"name\": \"total_cost\", \"dataType\": \"Double\"}]"
+          }, {
+            "name" : "modifyCase",
+            "value" : "Keep original"
+          }, {
+            "name" : "columnNames",
+            "value" : "[\"snomed_diagnosis\"]"
+          }, {
+            "name" : "replaceNullTextFields",
+            "value" : "true"
+          }, {
+            "name" : "replaceNullTextWith",
+            "value" : "No Diagnosis"
+          }, {
+            "name" : "replaceNullForNumericFields",
+            "value" : "false"
+          }, {
+            "name" : "replaceNullNumericWith",
+            "value" : "0"
+          }, {
+            "name" : "trimWhiteSpace",
+            "value" : "false"
+          }, {
+            "name" : "removeTabsLineBreaksAndDuplicateWhitespace",
+            "value" : "false"
+          }, {
+            "name" : "allWhiteSpace",
+            "value" : "false"
+          }, {
+            "name" : "cleanLetters",
+            "value" : "false"
+          }, {
+            "name" : "cleanPunctuations",
+            "value" : "false"
+          }, {
+            "name" : "cleanNumbers",
+            "value" : "false"
+          }, {
+            "name" : "removeRowNullAllCols",
+            "value" : "false"
+          } ]
+        },
+        "schema" : "[{\"name\": \"snomed_diagnosis\", \"dataType\": \"String\"}, {\"name\": \"total_cost\", \"dataType\": \"Double\"}]",
+        "allWhiteSpace" : false,
+        "removeTabsLineBreaksAndDuplicateWhitespace" : false,
+        "modifyCase" : "Keep original",
+        "cleanPunctuations" : false,
+        "cleanNumbers" : false,
+        "replaceNullNumericWith" : 0
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "pRMzlGBH1LBb7muElWr1R$$KOPYLXCfdq2tdu6QDX8SN",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "SjDiCNFkw2xFSJvehyRbZ$$Fa-ySZcfNb10M44yCLuO8",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      },
+      "componentInfo" : {
+        "gemId" : "DataCleansing_DatabricksSqlBasics",
+        "name" : "DataCleansing",
+        "projectName" : "DatabricksSqlBasics",
+        "sourceProjectName" : "DatabricksSqlBasics",
+        "sourceProjectVersion" : "0.0.4"
+      }
+    },
+    "xle7QBoTecCkThFWYGsj2$$sxhZk-lUzIuPw7MvRsfC5" : {
+      "id" : "xle7QBoTecCkThFWYGsj2$$sxhZk-lUzIuPw7MvRsfC5",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "total_cost_sorted",
+        "x" : -300,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "8RRAnCspVFEcMdrdWle4u$$7OcAy9r7xLzyFP_QPm6lz##total_cost" ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "total_cost"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "8RRAnCspVFEcMdrdWle4u$$7OcAy9r7xLzyFP_QPm6lz",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "jV7RAsXK9bgzQENsCl-XL$$TxcNN3hvkBdrj9AzcSpA9",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "vyK3qEXnllqtpPJrx6McR$$m_SqUgrppTwRH1MIMp7rb" : {
+      "id" : "vyK3qEXnllqtpPJrx6McR$$m_SqUgrppTwRH1MIMp7rb",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2_1",
+        "x" : -620,
+        "y" : 20,
+        "height" : 60,
+        "width" : 220.0001220703125,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "2. Sum baseEncounterCost by snomedDiagnosis"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "5o7_G182AZhe6SjJyQccM$$wgby3z4joS-4RAhpiHQpq" : {
+      "id" : "5o7_G182AZhe6SjJyQccM$$wgby3z4joS-4RAhpiHQpq",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_3",
+        "x" : -160,
+        "y" : -260,
+        "height" : 39.999977111816406,
+        "width" : 220.0000457763672,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "2a. Data Visualization"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "migIPgbnisiH6kTCN0Lbc$$Sx_pK2WNvpGbH-eKI_NI1" : {
+      "id" : "migIPgbnisiH6kTCN0Lbc$$Sx_pK2WNvpGbH-eKI_NI1",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2_1_1_1",
+        "x" : 40,
+        "y" : 20,
+        "height" : 60,
+        "width" : 219.99990844726562,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "4. Join to clinical_trials_silver to get associated nctIds"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "GGtv2xtHTzHLiT1RaAhxN" : {
+      "id" : "GGtv2xtHTzHLiT1RaAhxN",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L0_bronze_clinical_study_details",
+        "x" : -300,
+        "y" : 200,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "l0_bronze_clinical_study_details",
+          "sourceType" : "Table",
+          "sourceName" : "playground.playground_schema_11083_gd4",
+          "alias" : "",
+          "additionalProperties" : null
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "BpX2-_Y1thXzo6C7geECE",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "wrtCzfB2cljMM_76LidDC",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "studyType",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "overallStatus",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "condition",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "intervention",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "name",
+                  "dataType" : {
+                    "type" : "String"
+                  },
+                  "description" : "Name of the intervention used in the clinical study",
+                  "tags" : [ ]
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "SFYSSvlqyWkxvI_9Opa3y$$wXYgUZrJsEyTrir_bMQBb" : {
+      "id" : "SFYSSvlqyWkxvI_9Opa3y$$wXYgUZrJsEyTrir_bMQBb",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "null_nct_ids",
+        "x" : 680,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "sXd2ivmeC709-TkbGjq3z$$Ki62AymFONeqVtaYtxiRW##nctIds" ],
+        "condition" : {
+          "expression" : "size(nctIds) = 0"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "sXd2ivmeC709-TkbGjq3z$$Ki62AymFONeqVtaYtxiRW",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctIds",
+              "dataType" : {
+                "type" : "Array",
+                "dataType" : {
+                  "type" : "String"
+                }
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "nbaBQAFP2nZQ1T4EYte73$$rzeLdgLzOWUvAb8SXXDM_",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctIds",
+              "dataType" : {
+                "type" : "Array",
+                "dataType" : {
+                  "type" : "String"
+                }
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy" : {
+      "id" : "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "diagnosis_clinical_trials",
+        "x" : 100,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "in1",
+          "expression" : {
+            "expression" : "in1.snomedCode = in0.snomed_diagnosis"
+          },
+          "joinType" : "left"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "in0.snomed_diagnosis"
+          },
+          "alias" : "snomed_diagnosis",
+          "_row_id" : "996371617"
+        }, {
+          "expression" : {
+            "expression" : "in0.total_cost"
+          },
+          "alias" : "total_cost",
+          "_row_id" : "927249071"
+        }, {
+          "expression" : {
+            "expression" : "in1.nctId"
+          },
+          "alias" : "nctId",
+          "_row_id" : "1632976097"
+        }, {
+          "expression" : {
+            "expression" : "in1.briefTitle"
+          },
+          "alias" : "briefTitle",
+          "_row_id" : "1833063420"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3##snomedCode", "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9##snomed_diagnosis", "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9##snomed_diagnosis", "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9##total_cost", "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3##nctId", "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3##briefTitle" ],
+        "headAlias" : "in0"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        }, {
+          "id" : "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "studyType",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "overallStatus",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "condition",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "intervention",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "name",
+                  "dataType" : {
+                    "type" : "String"
+                  },
+                  "description" : "Name of the intervention used in the clinical study",
+                  "tags" : [ ]
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in1"
+        } ],
+        "outputs" : [ {
+          "id" : "9D3Qe7gdPRpeAquTusxfn$$3Y5sSPoDY-UmVhG6HAkye",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "o-WbYp9ntY-aoj6I8yF0p$$g_0FEPJKHgVlAy3TeEcMG" : {
+      "id" : "o-WbYp9ntY-aoj6I8yF0p$$g_0FEPJKHgVlAy3TeEcMG",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "valid_encounters",
+        "x" : -800,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "MRW8VruaoKueyR9dkpi3O$$tshibxeK52XaTIBwq_yst##baseEncounterCost" ],
+        "condition" : {
+          "expression" : "baseEncounterCost > 0"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "MRW8VruaoKueyR9dkpi3O$$tshibxeK52XaTIBwq_yst",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "start",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "stop",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "organization",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "payer",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "encounterClass",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "totalClaimCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "payerCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "reasonCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "reasonDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "RWx03jp7CKk_RsYV3ziWx$$I_vJXyGwKgH1XGdr6jVMe",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "start",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "stop",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "organization",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "payer",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "encounterClass",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "totalClaimCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "payerCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "reasonCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "reasonDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "xXGzoKTbjlmnujWCdbSa7$$kA8ZIqBvDFjIRjguVHAoT" : {
+      "id" : "xXGzoKTbjlmnujWCdbSa7$$kA8ZIqBvDFjIRjguVHAoT",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_1",
+        "x" : -1100,
+        "y" : -500,
+        "height" : 139.99998474121094,
+        "width" : 284,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "# Pharmaceutical Gap Analysis"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q" : {
+      "id" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "max_cost_by_diagnosis",
+        "x" : 380,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "snomed_diagnosis"
+          },
+          "alias" : "snomed_diagnosis",
+          "_row_id" : "1076060054"
+        }, {
+          "expression" : {
+            "expression" : "total_cost"
+          },
+          "alias" : "total_cost",
+          "_row_id" : "xUNraF_RFS"
+        }, {
+          "expression" : {
+            "expression" : "COLLECT_SET(nctId)"
+          },
+          "alias" : "nctIds",
+          "_row_id" : "KH_KboAkCq"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI##snomed_diagnosis", "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI##total_cost", "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI##nctId" ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "snomed_diagnosis"
+          },
+          "alias" : "",
+          "_row_id" : "fR-c6DV4uh"
+        }, {
+          "expression" : {
+            "expression" : "total_cost"
+          },
+          "alias" : "",
+          "_row_id" : "ZE17pS0T5S"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "M6vGLCTWmtn4Wx9ndL8FG$$TkixeaaC0OXRzo8z84HbZ",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctIds",
+              "dataType" : {
+                "type" : "Array",
+                "dataType" : {
+                  "type" : "String"
+                }
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "BO6LZG7oaf4FJ44mDowRO$$NQg7vDi_WqENVVjLC87CG" : {
+      "id" : "BO6LZG7oaf4FJ44mDowRO$$NQg7vDi_WqENVVjLC87CG",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_2",
+        "x" : -860,
+        "y" : 20,
+        "height" : 60,
+        "width" : 219.99996948242188,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "1. Filter where baseEncounterCost > 0"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "0wY4qNGfkGwUppPpHUR-J" : {
+      "id" : "0wY4qNGfkGwUppPpHUR-J",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L2_gold_clinical_trial_gap_analysis",
+        "x" : 1000,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "L2_gold_clinical_trial_gap_analysis",
+          "sourceType" : "Table",
+          "sourceName" : "playground.playground_schema_11083_gd4",
+          "alias" : "",
+          "additionalProperties" : null
+        },
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Xp4cFUbWr1kp4LE4nu69a",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctIds",
+              "dataType" : {
+                "type" : "Array",
+                "dataType" : {
+                  "type" : "String"
+                }
+              }
+            } ]
+          },
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "Z_Ia5J_v0XLL4nepOpakY",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctIds",
+              "dataType" : {
+                "type" : "Array",
+                "dataType" : {
+                  "type" : "String"
+                }
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "UQ12Q-_1toXk5TDZft5He$$h7c_UCZFq8UG8MOgIMVhA" : {
+      "id" : "UQ12Q-_1toXk5TDZft5He$$h7c_UCZFq8UG8MOgIMVhA",
+      "component" : "Comment",
+      "metadata" : {
+        "label" : "Comment_3_1",
+        "x" : 820,
+        "y" : -260,
+        "height" : 39.999977111816406,
+        "width" : 220.0001983642578,
+        "phase" : 0
+      },
+      "properties" : {
+        "comment" : "5a. Data Visualization"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ ]
+      }
+    },
+    "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp" : {
+      "id" : "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "max_cost_by_diagnosis_sorted",
+        "x" : 680,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "KWcleHjqKlkf9hXM_WSqn$$jNjSiE0VWu7k6s1gMiiPI##total_cost" ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "total_cost"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "KWcleHjqKlkf9hXM_WSqn$$jNjSiE0VWu7k6s1gMiiPI",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctIds",
+              "dataType" : {
+                "type" : "Array",
+                "dataType" : {
+                  "type" : "String"
+                }
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "o_no2MppmUowl6hLO-lN9$$N3WeMAXrXBmGsLCfaASKr",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "nctIds",
+              "dataType" : {
+                "type" : "Array",
+                "dataType" : {
+                  "type" : "String"
+                }
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0" : {
+      "id" : "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "total_cost_by_reason_code",
+        "x" : -560,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "reasonCode"
+          },
+          "alias" : "snomed_diagnosis",
+          "_row_id" : "j_y5BohzNR"
+        }, {
+          "expression" : {
+            "expression" : "sum(baseEncounterCost)"
+          },
+          "alias" : "total_cost",
+          "_row_id" : "803634453"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ "Qr5aUvX4xUtMIV_2XZ1Uq$$Pb4ucP_fDrQztGvy6lOLa##reasonCode", "Qr5aUvX4xUtMIV_2XZ1Uq$$Pb4ucP_fDrQztGvy6lOLa##baseEncounterCost" ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "reasonCode"
+          },
+          "alias" : "",
+          "_row_id" : "KKuOpf3G2s"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Qr5aUvX4xUtMIV_2XZ1Uq$$Pb4ucP_fDrQztGvy6lOLa",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "start",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "stop",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "organization",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "payer",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "encounterClass",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "totalClaimCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "payerCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "reasonCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "reasonDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "pDwVRldCzvm7RA03Xp1ao$$yuRaQ0FaJY6gKDXiG2glB",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "snomed_diagnosis",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "total_cost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "vQw4gN-QaM6M5lk8Y4oB-",
+    "source" : "o-WbYp9ntY-aoj6I8yF0p$$g_0FEPJKHgVlAy3TeEcMG",
+    "sourcePort" : "RWx03jp7CKk_RsYV3ziWx$$I_vJXyGwKgH1XGdr6jVMe",
+    "target" : "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0",
+    "targetPort" : "Qr5aUvX4xUtMIV_2XZ1Uq$$Pb4ucP_fDrQztGvy6lOLa"
+  }, {
+    "id" : "9HVm2g-2GUwJWHSUVsopL",
+    "source" : "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0",
+    "sourcePort" : "pDwVRldCzvm7RA03Xp1ao$$yuRaQ0FaJY6gKDXiG2glB",
+    "target" : "xle7QBoTecCkThFWYGsj2$$sxhZk-lUzIuPw7MvRsfC5",
+    "targetPort" : "8RRAnCspVFEcMdrdWle4u$$7OcAy9r7xLzyFP_QPm6lz"
+  }, {
+    "id" : "NMxjvDY3XDTk8LxS3sm_7",
+    "source" : "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY",
+    "sourcePort" : "SjDiCNFkw2xFSJvehyRbZ$$Fa-ySZcfNb10M44yCLuO8",
+    "target" : "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy",
+    "targetPort" : "-xpI6X7kNL4kdtDgkuUy_$$5GE9d09_WGh20Db9FG1u9"
+  }, {
+    "id" : "2bQv-H8ObFNaMYvIahWqv",
+    "source" : "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy",
+    "sourcePort" : "9D3Qe7gdPRpeAquTusxfn$$3Y5sSPoDY-UmVhG6HAkye",
+    "target" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "targetPort" : "oaGRrD9oXFZ-X9GflHhK7$$e_oCTilqdrDQgH9ioKOaI"
+  }, {
+    "id" : "sM4SqWzUCD9He9zNEsoVk",
+    "source" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "sourcePort" : "M6vGLCTWmtn4Wx9ndL8FG$$TkixeaaC0OXRzo8z84HbZ",
+    "target" : "SFYSSvlqyWkxvI_9Opa3y$$wXYgUZrJsEyTrir_bMQBb",
+    "targetPort" : "sXd2ivmeC709-TkbGjq3z$$Ki62AymFONeqVtaYtxiRW"
+  }, {
+    "id" : "DrKvP4y-gOlRY3O4BIYK6",
+    "source" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "sourcePort" : "M6vGLCTWmtn4Wx9ndL8FG$$TkixeaaC0OXRzo8z84HbZ",
+    "target" : "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp",
+    "targetPort" : "KWcleHjqKlkf9hXM_WSqn$$jNjSiE0VWu7k6s1gMiiPI"
+  }, {
+    "id" : "wU57iqkFLifxvBnVoI64H",
+    "source" : "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0",
+    "sourcePort" : "pDwVRldCzvm7RA03Xp1ao$$yuRaQ0FaJY6gKDXiG2glB",
+    "target" : "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY",
+    "targetPort" : "pRMzlGBH1LBb7muElWr1R$$KOPYLXCfdq2tdu6QDX8SN"
+  }, {
+    "id" : "_Hfw2diRjpb2Zt6Dy1Uw1$$WfhFlxdEnWm3OCyEAy4DM",
+    "source" : "KlKW1WJuIReUcFykh6t32",
+    "sourcePort" : "HvgfPdYVkym5KREYuWbvv",
+    "target" : "o-WbYp9ntY-aoj6I8yF0p$$g_0FEPJKHgVlAy3TeEcMG",
+    "targetPort" : "MRW8VruaoKueyR9dkpi3O$$tshibxeK52XaTIBwq_yst"
+  }, {
+    "id" : "JX3qvmXkQv40MlhY4ixIO",
+    "source" : "GGtv2xtHTzHLiT1RaAhxN",
+    "sourcePort" : "wrtCzfB2cljMM_76LidDC",
+    "target" : "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy",
+    "targetPort" : "uQTLufCvcu_VaEzQM8KIM$$4HsWRkNVYu0wWNic4dPa3"
+  }, {
+    "id" : "rIyxSc7bbOl8_3UoGtlEf",
+    "source" : "SFYSSvlqyWkxvI_9Opa3y$$wXYgUZrJsEyTrir_bMQBb",
+    "sourcePort" : "nbaBQAFP2nZQ1T4EYte73$$rzeLdgLzOWUvAb8SXXDM_",
+    "target" : "0wY4qNGfkGwUppPpHUR-J",
+    "targetPort" : "Xp4cFUbWr1kp4LE4nu69a"
+  } ],
+  "component" : "Pipeline"
+}

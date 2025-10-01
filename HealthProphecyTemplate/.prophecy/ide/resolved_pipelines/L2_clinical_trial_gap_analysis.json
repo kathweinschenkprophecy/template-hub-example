@@ -1,0 +1,402 @@
+{
+  "id" : "L2_clinical_trial_gap_analysis",
+  "metainfo" : {
+    "label" : "L2_clinical_trial_gap_analysis",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "schedule" : {
+      "cron" : "* 0 2 * * * *",
+      "timeZone" : "GMT",
+      "emailOnSuccess" : false,
+      "emailOnFailure" : false,
+      "emailOnStart" : false,
+      "emails" : [ "email@gmail.com" ],
+      "enabled" : false
+    }
+  },
+  "processes" : {
+    "KlKW1WJuIReUcFykh6t32" : {
+      "id" : "KlKW1WJuIReUcFykh6t32",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L0_raw_encounters",
+        "x" : -1020,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_encounters",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "1KbcuvCoU989_E5WAAyYt",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "HvgfPdYVkym5KREYuWbvv",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "start",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "stop",
+              "dataType" : {
+                "type" : "Timestamp"
+              }
+            }, {
+              "name" : "patient",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "organization",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "provider",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "payer",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "encounterClass",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "code",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "description",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "baseEncounterCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "totalClaimCost",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "payerCoverage",
+              "dataType" : {
+                "type" : "Double"
+              }
+            }, {
+              "name" : "reasonCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "reasonDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "xle7QBoTecCkThFWYGsj2$$sxhZk-lUzIuPw7MvRsfC5" : {
+      "id" : "xle7QBoTecCkThFWYGsj2$$sxhZk-lUzIuPw7MvRsfC5",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "model_L2_clinical_trial_gap_analysis_total_cost_sorted",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "model_L2_clinical_trial_gap_analysis_total_cost_sorted"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_sorted", "xle7QBoTecCkThFWYGsj2$$sxhZk-lUzIuPw7MvRsfC5", "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_by_reason_code" ],
+        "type" : "table",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_total_cost_sorted_in_0",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_total_cost_sorted_out_0",
+          "slug" : "out_0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "GGtv2xtHTzHLiT1RaAhxN" : {
+      "id" : "GGtv2xtHTzHLiT1RaAhxN",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "L0_bronze_clinical_study_details",
+        "x" : -300,
+        "y" : 200,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "l0_bronze_clinical_study_details",
+          "sourceType" : "Table",
+          "sourceName" : "playground.playground_schema_11083_gd4",
+          "alias" : "",
+          "additionalProperties" : null
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "BpX2-_Y1thXzo6C7geECE",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "wrtCzfB2cljMM_76LidDC",
+          "schema" : {
+            "entityType" : "",
+            "providerType" : "databricks",
+            "fields" : [ {
+              "name" : "nctId",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "briefTitle",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "studyType",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "overallStatus",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "condition",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "intervention",
+              "dataType" : {
+                "type" : "Struct",
+                "fields" : [ {
+                  "name" : "name",
+                  "dataType" : {
+                    "type" : "String"
+                  },
+                  "description" : "Name of the intervention used in the clinical study",
+                  "tags" : [ ]
+                } ]
+              }
+            }, {
+              "name" : "snomedCode",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "conditionDescription",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          },
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q" : {
+      "id" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis", "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q", "swWjAajQCT61UDVJpYK5V$$3pjipKjOuuaHrVATs1Wzy", "GGtv2xtHTzHLiT1RaAhxN", "o8nF92PZ5ieh4S1mSuoQl$$IhgpBF1Bwn__hWhe1UxPY", "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_by_reason_code" ],
+        "type" : "table",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_in_0",
+          "slug" : "in_0"
+        }, {
+          "id" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_in_1",
+          "slug" : "in_1"
+        }, {
+          "id" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_in_2",
+          "slug" : "in_2"
+        } ],
+        "outputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_out_0",
+          "slug" : "out_0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "0wY4qNGfkGwUppPpHUR-J" : {
+      "id" : "0wY4qNGfkGwUppPpHUR-J",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "model_L2_clinical_trial_gap_analysis_null_nct_ids",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "model_L2_clinical_trial_gap_analysis_null_nct_ids"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "0wY4qNGfkGwUppPpHUR-J", "SFYSSvlqyWkxvI_9Opa3y$$wXYgUZrJsEyTrir_bMQBb", "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis" ],
+        "type" : "table",
+        "isTemporaryTable" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_null_nct_ids_in_0",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_null_nct_ids_out_0",
+          "slug" : "out_0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp" : {
+      "id" : "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis_sorted", "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp", "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__max_cost_by_diagnosis" ],
+        "type" : "table",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted_in_0",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted_out_0",
+          "slug" : "out_0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0" : {
+      "id" : "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "prophecy_tmp__mbh9lpvn__L2_clinical_trial_gap_analysis__total_cost_by_reason_code", "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0", "o-WbYp9ntY-aoj6I8yF0p$$g_0FEPJKHgVlAy3TeEcMG", "KlKW1WJuIReUcFykh6t32" ],
+        "type" : "table",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code_in_0",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code_out_0",
+          "slug" : "out_0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "JX3qvmXkQv40MlhY4ixIO",
+    "source" : "GGtv2xtHTzHLiT1RaAhxN",
+    "sourcePort" : "wrtCzfB2cljMM_76LidDC",
+    "target" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "targetPort" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_in_1"
+  }, {
+    "id" : "_Hfw2diRjpb2Zt6Dy1Uw1$$WfhFlxdEnWm3OCyEAy4DM",
+    "source" : "KlKW1WJuIReUcFykh6t32",
+    "sourcePort" : "HvgfPdYVkym5KREYuWbvv",
+    "target" : "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0",
+    "targetPort" : "model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code_in_0"
+  }, {
+    "id" : "conn_UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q_OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp",
+    "source" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "sourcePort" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_out_0",
+    "target" : "OYsR5z3yZ4mvZBvsCss2t$$H5JPAbFIEhsVVyr0RYuWp",
+    "targetPort" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_sorted_in_0"
+  }, {
+    "id" : "conn_UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q_SFYSSvlqyWkxvI_9Opa3y$$wXYgUZrJsEyTrir_bMQBb",
+    "source" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "sourcePort" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_out_0",
+    "target" : "0wY4qNGfkGwUppPpHUR-J",
+    "targetPort" : "model_L2_clinical_trial_gap_analysis_null_nct_ids_in_0"
+  }, {
+    "id" : "conn_7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0_xle7QBoTecCkThFWYGsj2$$sxhZk-lUzIuPw7MvRsfC5",
+    "source" : "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0",
+    "sourcePort" : "model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code_out_0",
+    "target" : "xle7QBoTecCkThFWYGsj2$$sxhZk-lUzIuPw7MvRsfC5",
+    "targetPort" : "model_L2_clinical_trial_gap_analysis_total_cost_sorted_in_0"
+  }, {
+    "id" : "conn_7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0_UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "source" : "7KzsPf8kjlcx-WNlw3Jog$$_cwBXHlOUP8DbFz-dEmW0",
+    "sourcePort" : "model_L2_clinical_trial_gap_analysis_total_cost_by_reason_code_out_0",
+    "target" : "UTtH9afE0xEJnPJLlQED_$$YuNbrb0wK6AFQBdwOJ95Q",
+    "targetPort" : "model_L2_clinical_trial_gap_analysis_max_cost_by_diagnosis_in_0"
+  } ],
+  "component" : "Pipeline"
+}

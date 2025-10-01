@@ -1,0 +1,314 @@
+{
+  "id" : "model_L0_raw_clinical_trials_cleanse_clinical_trial_data",
+  "metainfo" : {
+    "label" : "model_L0_raw_clinical_trials_cleanse_clinical_trial_data",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "alias" : "\"l0_bronze_clinical_study_details\"",
+        "materialized" : "table",
+        "database" : "\"playground\"",
+        "schema" : "\"playground_schema_11083_gd4\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "nghWz7aECNhINiV5LhNQ_$$tlzsPnb9CB2LV5Yw88MVn" : {
+      "id" : "nghWz7aECNhINiV5LhNQ_$$tlzsPnb9CB2LV5Yw88MVn",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L0_raw_clinical_trials",
+        "x" : -840,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "L0_raw_clinical_trials",
+          "sourceType" : "Table",
+          "sourceName" : "analyst_samples.healthcare",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "eMdVSdOt_l7tFTjLjbT5t$$aDztkG7XlisajloJ5dWqf",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "OS0hLobUELDQ1zJSkCx42$$zBymTNY8Y5YAnAOOxmkRF" : {
+      "id" : "OS0hLobUELDQ1zJSkCx42$$zBymTNY8Y5YAnAOOxmkRF",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "filter_malformed_json",
+        "x" : -640,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "80w40uZPsmAcgSXeDBsYd$$Sw0w6U4Ufva2KSnlUlr82##_corrupt_record" ],
+        "condition" : {
+          "expression" : "_corrupt_record IS NULL"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "80w40uZPsmAcgSXeDBsYd$$Sw0w6U4Ufva2KSnlUlr82",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "3I2aeX7yuUZak0E9XYo96$$y0Bq7EyNhpXmw0hPt8P-z",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "mouyOu7tkU0SUhUdRrz-Y$$DxgJEEwyG01GNpy3g862M" : {
+      "id" : "mouyOu7tkU0SUhUdRrz-Y$$DxgJEEwyG01GNpy3g862M",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "l0_bronze_clinical_study_details",
+        "phase" : 0
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM cleanse_clinical_trial_data\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "nf6DUfLQOuE8ZoJWrl4I1$$ZtTEyD9AOS-i3ofJWPnde",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "C2c4xiOOZAkCZJE66Qw_y$$u3rxmsPU3W0SnkTLv6Rvo",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "_9f5dLtqJ2WcHGdiKjPLy$$lij8suUsTauhPtGGDnk1z" : {
+      "id" : "_9f5dLtqJ2WcHGdiKjPLy$$lij8suUsTauhPtGGDnk1z",
+      "component" : "FlattenSchema",
+      "metadata" : {
+        "label" : "clinical_trial_conditions_interventions",
+        "x" : -440,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.conditionsModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.conditionsModule.conditions", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.armsInterventionsModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.armsInterventionsModule.interventions", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.identificationModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.identificationModule.nctId", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.identificationModule.briefTitle", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.designModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.designModule.studyType", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.statusModule", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##protocolSection.statusModule.overallStatus", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##snomedCode", "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7##conditionDescription" ],
+        "flattenExpressions" : [ {
+          "expression" : {
+            "expression" : "protocolSection.conditionsModule.conditions"
+          },
+          "alias" : "condition",
+          "_row_id" : "946136711"
+        }, {
+          "expression" : {
+            "expression" : "protocolSection.armsInterventionsModule.interventions"
+          },
+          "alias" : "intervention",
+          "_row_id" : "984128967"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "protocolSection.identificationModule.nctId"
+          },
+          "alias" : "nctId",
+          "_row_id" : "998596617"
+        }, {
+          "expression" : {
+            "expression" : "protocolSection.identificationModule.briefTitle"
+          },
+          "alias" : "briefTitle",
+          "_row_id" : "401705701"
+        }, {
+          "expression" : {
+            "expression" : "protocolSection.designModule.studyType"
+          },
+          "alias" : "studyType",
+          "_row_id" : "1100978519"
+        }, {
+          "expression" : {
+            "expression" : "protocolSection.statusModule.overallStatus"
+          },
+          "alias" : "overallStatus",
+          "_row_id" : "716154868"
+        }, {
+          "expression" : {
+            "expression" : "condition.col"
+          },
+          "alias" : "condition",
+          "_row_id" : "184642605"
+        }, {
+          "expression" : {
+            "expression" : "intervention.col"
+          },
+          "alias" : "intervention",
+          "_row_id" : "1282486508"
+        }, {
+          "expression" : {
+            "expression" : "snomedCode"
+          },
+          "alias" : "snomedCode",
+          "_row_id" : "443752151"
+        }, {
+          "expression" : {
+            "expression" : "conditionDescription"
+          },
+          "alias" : "conditionDescription",
+          "_row_id" : "333992422"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "qf_cufuAaOuOU9XyrXeko$$pTIy1sMv9268NFhCGjOci",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "GnSBHmywfmwfOhNSriX9_$$-NUPNXaKDFWpCD2g7bGAj" : {
+      "id" : "GnSBHmywfmwfOhNSriX9_$$-NUPNXaKDFWpCD2g7bGAj",
+      "component" : "DataCleansing",
+      "metadata" : {
+        "label" : "cleanse_clinical_trial_data",
+        "x" : -200,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "trimWhiteSpace" : true,
+        "replaceNullForNumericFields" : false,
+        "cleanLetters" : false,
+        "replaceNullTextWith" : "NA",
+        "removeRowNullAllCols" : false,
+        "replaceNullTextFields" : false,
+        "relation_name" : [ "clinical_trial_conditions_interventions" ],
+        "columnNames" : [ "conditionDescription" ],
+        "_oldMacroProperties" : {
+          "macroName" : "DataCleansing",
+          "projectName" : "DatabricksSqlBasics",
+          "parameters" : [ {
+            "name" : "relation_name",
+            "value" : "['clinical_trial_conditions_interventions']"
+          }, {
+            "name" : "schema",
+            "value" : "[{\"name\": \"nctId\", \"dataType\": \"String\"}, {\"name\": \"briefTitle\", \"dataType\": \"String\"}, {\"name\": \"studyType\", \"dataType\": \"String\"}, {\"name\": \"overallStatus\", \"dataType\": \"String\"}, {\"name\": \"condition\", \"dataType\": \"String\"}, {\"name\": \"intervention\", \"dataType\": \"Struct\"}, {\"name\": \"snomedCode\", \"dataType\": \"String\"}, {\"name\": \"conditionDescription\", \"dataType\": \"String\"}]"
+          }, {
+            "name" : "modifyCase",
+            "value" : "keepOriginal"
+          }, {
+            "name" : "columnNames",
+            "value" : "[\"conditionDescription\"]"
+          }, {
+            "name" : "replaceNullTextFields",
+            "value" : "false"
+          }, {
+            "name" : "replaceNullTextWith",
+            "value" : "NA"
+          }, {
+            "name" : "replaceNullForNumericFields",
+            "value" : "false"
+          }, {
+            "name" : "replaceNullNumericWith",
+            "value" : "0"
+          }, {
+            "name" : "trimWhiteSpace",
+            "value" : "true"
+          }, {
+            "name" : "removeTabsLineBreaksAndDuplicateWhitespace",
+            "value" : "false"
+          }, {
+            "name" : "allWhiteSpace",
+            "value" : "false"
+          }, {
+            "name" : "cleanLetters",
+            "value" : "false"
+          }, {
+            "name" : "cleanPunctuations",
+            "value" : "false"
+          }, {
+            "name" : "cleanNumbers",
+            "value" : "false"
+          }, {
+            "name" : "removeRowNullAllCols",
+            "value" : "false"
+          } ]
+        },
+        "schema" : "[{\"name\": \"nctId\", \"dataType\": \"String\"}, {\"name\": \"briefTitle\", \"dataType\": \"String\"}, {\"name\": \"studyType\", \"dataType\": \"String\"}, {\"name\": \"overallStatus\", \"dataType\": \"String\"}, {\"name\": \"condition\", \"dataType\": \"String\"}, {\"name\": \"intervention\", \"dataType\": \"Struct\"}, {\"name\": \"snomedCode\", \"dataType\": \"String\"}, {\"name\": \"conditionDescription\", \"dataType\": \"String\"}]",
+        "allWhiteSpace" : false,
+        "removeTabsLineBreaksAndDuplicateWhitespace" : false,
+        "modifyCase" : "keepOriginal",
+        "cleanPunctuations" : false,
+        "cleanNumbers" : false,
+        "replaceNullNumericWith" : 0
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "L7NN_Cs83gtACV9qzFW14$$q5b3IRXVRvr1VqWCTB1sW",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "ir4xq9vOI_JgdaVNIYVjt$$Vs_SLNfggLLuN8i631Omx",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "6J4lMiGfgURKSOMdVBsfl",
+    "source" : "GnSBHmywfmwfOhNSriX9_$$-NUPNXaKDFWpCD2g7bGAj",
+    "sourcePort" : "ir4xq9vOI_JgdaVNIYVjt$$Vs_SLNfggLLuN8i631Omx",
+    "target" : "mouyOu7tkU0SUhUdRrz-Y$$DxgJEEwyG01GNpy3g862M",
+    "targetPort" : "nf6DUfLQOuE8ZoJWrl4I1$$ZtTEyD9AOS-i3ofJWPnde"
+  }, {
+    "id" : "a6Q5vZEi3VMHIks2F_8yS",
+    "source" : "_9f5dLtqJ2WcHGdiKjPLy$$lij8suUsTauhPtGGDnk1z",
+    "sourcePort" : "qf_cufuAaOuOU9XyrXeko$$pTIy1sMv9268NFhCGjOci",
+    "target" : "GnSBHmywfmwfOhNSriX9_$$-NUPNXaKDFWpCD2g7bGAj",
+    "targetPort" : "L7NN_Cs83gtACV9qzFW14$$q5b3IRXVRvr1VqWCTB1sW"
+  }, {
+    "id" : "5cznR8D9gA4lOlJh7VRJr",
+    "source" : "OS0hLobUELDQ1zJSkCx42$$zBymTNY8Y5YAnAOOxmkRF",
+    "sourcePort" : "3I2aeX7yuUZak0E9XYo96$$y0Bq7EyNhpXmw0hPt8P-z",
+    "target" : "_9f5dLtqJ2WcHGdiKjPLy$$lij8suUsTauhPtGGDnk1z",
+    "targetPort" : "STokpQ5wnr8wcFn49Wc6g$$M2IYTCVUCMnTQuAxs9Ou7"
+  }, {
+    "id" : "HFElRlN0ikBGdzVQXHSLs",
+    "source" : "nghWz7aECNhINiV5LhNQ_$$tlzsPnb9CB2LV5Yw88MVn",
+    "sourcePort" : "eMdVSdOt_l7tFTjLjbT5t$$aDztkG7XlisajloJ5dWqf",
+    "target" : "OS0hLobUELDQ1zJSkCx42$$zBymTNY8Y5YAnAOOxmkRF",
+    "targetPort" : "80w40uZPsmAcgSXeDBsYd$$Sw0w6U4Ufva2KSnlUlr82"
+  } ],
+  "component" : "Model"
+}
